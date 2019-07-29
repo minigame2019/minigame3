@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 351443031257409728}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 351443031257642210}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ed3d7a3f1309a14ea847d54cd397e19, type: 2}
+  - {fileID: 2100000, guid: c5d7b7feace41ac488218b3f5b94a5e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,8 +230,10 @@ MonoBehaviour:
     AttackRange: 60
   Cooldown: 0.2
   Armor: {fileID: 351443031257642216}
-  Jour: []
-  Nuit: []
+  Jour:
+  - {fileID: 351443031257642208}
+  Nuit:
+  - {fileID: 351443031257642208}
   UseBothProjectileTypes: 1
 --- !u!114 &351443032488160699
 MonoBehaviour:

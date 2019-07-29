@@ -158,7 +158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &170076734
 Light:
   m_ObjectHideFlags: 0
@@ -1031,16 +1031,16 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 24
   Waves:
-  - BasicEnemy: 0
-    ArmorEnemy: 0
-    PillarEnemy: 0
-    ArmorPillarEnemy: 0
+  - BasicEnemy: 2
+    ArmorEnemy: 2
+    PillarEnemy: 1
+    ArmorPillarEnemy: 1
     Switch: 1
   - BasicEnemy: 2
     ArmorEnemy: 2
     PillarEnemy: 2
     ArmorPillarEnemy: 2
-    Switch: 0
+    Switch: 1
   - BasicEnemy: 2
     ArmorEnemy: 2
     PillarEnemy: 2
@@ -1050,7 +1050,7 @@ MonoBehaviour:
     ArmorEnemy: 2
     PillarEnemy: 2
     ArmorPillarEnemy: 2
-    Switch: 0
+    Switch: 1
 --- !u!1 &1454416130
 GameObject:
   m_ObjectHideFlags: 0

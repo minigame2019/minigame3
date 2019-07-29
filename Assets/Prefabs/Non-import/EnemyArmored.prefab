@@ -458,7 +458,7 @@ MonoBehaviour:
     TurnSpeed: 10
     AttackRange: 30
   Cooldown: 1
-  Armor: {fileID: 2066433812331547747}
+  Armor: {fileID: 0}
   Jour:
   - {fileID: 2066433812331547747}
   Nuit:

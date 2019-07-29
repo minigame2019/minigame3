@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < PoolingSystem.Instance.poolingItems.Length; i++)
             {
                 PoolingItems item = PoolingSystem.Instance.poolingItems[i];
-                Debug.Log(item.prefab);
                 if (item.prefab.name != "Projectile") continue;
                 item.SwitchMaterialToNight(true);
             }
@@ -184,6 +183,7 @@ public class GameManager : MonoBehaviour
         this.GameMenus.TopBar.canvasRenderer.SetAlpha(0f);
         this.GameMenus.BottomBar.canvasRenderer.SetAlpha(0f);
         this.GameMenus.BackBar.canvasRenderer.SetAlpha(0f);
+        this.Switch();
     }
 
     private void ReturnToMenu()

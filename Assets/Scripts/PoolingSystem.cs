@@ -98,6 +98,7 @@ public sealed class PoolingSystem : MonoBehaviour
     public GameObject InstantiateAPS(string itemType, Vector3 itemPosition, Quaternion itemRotation)
     {
         GameObject pooledItem = this.GetPooledItem(itemType);
+        if (pooledItem == null) return null;
         pooledItem.transform.position = itemPosition;
         pooledItem.transform.rotation = itemRotation;
         pooledItem.SetActive(true);

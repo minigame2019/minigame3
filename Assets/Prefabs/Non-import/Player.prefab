@@ -496,7 +496,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f3c0ec9ad4a8ac4a8378fddd0a63976, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -613,14 +613,11 @@ MonoBehaviour:
   Rigidbody: {fileID: 6683616525952790675}
   CharacterMesh: {fileID: 6683616525276106599}
   Stats:
-    Health: 6
+    Health: 10
     MoveSpeed: 8
     TurnSpeed: 10
     AttackRange: 100
   Cooldown: 0.1
-  HealthPiece1: {fileID: 0}
-  HealthPiece2: {fileID: 0}
-  HealthPiece3: {fileID: 0}
 --- !u!1 &6683616525276205907
 GameObject:
   m_ObjectHideFlags: 0

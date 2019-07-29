@@ -91,12 +91,13 @@ MonoBehaviour:
     AttackRange: 100
   Cooldown: 2
   Armor: {fileID: 0}
-  Jour: []
-  Nuit: []
-  UseBothProjectileTypes: 0
-  MultiArmor:
+  Jour:
   - {fileID: 7111044285170684957}
   - {fileID: 7111044285170684931}
+  Nuit:
+  - {fileID: 7111044285170684947}
+  UseBothProjectileTypes: 0
+  MultiArmor: []
   ProjectileEmitters:
   - {fileID: 7111044285170684951}
   - {fileID: 7111044285170684949}

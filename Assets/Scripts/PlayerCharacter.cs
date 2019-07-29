@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerCharacter : CharacterBase
 {
-    public GameObject HealthPiece1;
-    public GameObject HealthPiece2;
-    public GameObject HealthPiece3;
+    //public GameObject HealthPiece1;
+    //public GameObject HealthPiece2;
+    //public GameObject HealthPiece3;
 
     public override void CooldownTimers()
     {
@@ -48,9 +48,11 @@ public class PlayerCharacter : CharacterBase
     {
         CameraController.Shake(0.1f);
         base.Stats.Health--;
+        /*
         this.HealthPiece3.SetActive(base.Stats.Health >= 3);
         this.HealthPiece2.SetActive(base.Stats.Health >= 2);
         this.HealthPiece1.SetActive(base.Stats.Health >= 1);
+        */
         if (base.Stats.Health <= 0)
         {
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Explode, -1f);
