@@ -984,7 +984,7 @@ MonoBehaviour:
     m_Bits: 512
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 33792
+    m_Bits: 99328
   ProjectileLayer:
     serializedVersion: 2
     m_Bits: 10240
@@ -1101,7 +1101,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5893091d37cdf2b49a3988405329b6fa, type: 3}
+  - {fileID: 2100000, guid: 6338b1d8c0b191c4a979a1954016133f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
