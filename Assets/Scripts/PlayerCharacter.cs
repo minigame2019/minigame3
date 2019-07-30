@@ -48,7 +48,7 @@ public class PlayerCharacter : CharacterBase
     {
         CameraController.Shake(0.1f);
         base.Stats.Health--;
-        //info.Renew();
+        info.Renew();
         /*
         this.HealthPiece3.SetActive(base.Stats.Health >= 3);
         this.HealthPiece2.SetActive(base.Stats.Health >= 2);
@@ -83,6 +83,6 @@ public class PlayerCharacter : CharacterBase
     {
         CameraController.Instance.SetTarget(base.transform);
         info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
-        //info.Renew();
+        info.Renew();
     }
 }
