@@ -1034,10 +1034,10 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 24
   Waves:
-  - BasicEnemy: 2
-    ArmorEnemy: 2
-    PillarEnemy: 1
-    ArmorPillarEnemy: 1
+  - BasicEnemy: 0
+    ArmorEnemy: 0
+    PillarEnemy: 0
+    ArmorPillarEnemy: 0
     Switch: 1
   - BasicEnemy: 2
     ArmorEnemy: 2
