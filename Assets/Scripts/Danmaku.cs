@@ -11,6 +11,7 @@ public class Danmaku : MonoBehaviour
         
     }
 
+    // 
     public void RoundDanmaku(string itemType, Vector3 position, Vector3 direction, float angle)
     {
         float y = direction.y;

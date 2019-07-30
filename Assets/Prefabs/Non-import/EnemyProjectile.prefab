@@ -187,13 +187,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f579e88fd8299564fb59fa0490852cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 8
+  Speed: 4
   CanBeDestroyed: 1
   Radius: 0.2
   Distance: 30
   CollisionLayers:
     serializedVersion: 2
     m_Bits: 51712
+  CanBoom: 0
+  HaveBoomed: 0
+  BoomDistance: 0
 --- !u!54 &2496142280470189571
 Rigidbody:
   m_ObjectHideFlags: 0

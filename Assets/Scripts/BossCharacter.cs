@@ -33,29 +33,31 @@ public class BossCharacter : EnemyCharacter
     {
         if (base.CurrentCooldown <= 0f)
         {
-            switch(lastAttackWay % 2)
+            switch(lastAttackWay)
             {
                 case 0:
-                    new Danmaku().RoundDanmaku("EnemyProjectileBoomer", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
+                    new Danmaku().RoundDanmaku("EnemyProjectileBoomer", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 120);
                     break;
                 case 1:
-                    new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
+                    new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 60);
                     break;
-                /*
-                PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
-                GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
-                this.currentProjectile++;
-                if (this.currentProjectile >= 3)
-                {
-                    this.primaryProjectile = !this.primaryProjectile;
-                    this.currentProjectile = 0;
-                }
-                break;
-                */
                 default:
-                    break;
+                    PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
+                    GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+                    this.currentProjectile++;
+                    if (this.currentProjectile >= 3)
+                    {
+                        this.primaryProjectile = !this.primaryProjectile;
+                        this.currentProjectile = 0;
+                    }
+                break;
+                
             }
             lastAttackWay++;
+            if (lastAttackWay>4)
+            {
+                lastAttackWay = 0;
+            }
             base.CurrentCooldown = base.Cooldown;
             /*
             PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
