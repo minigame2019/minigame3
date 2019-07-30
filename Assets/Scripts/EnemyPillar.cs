@@ -21,7 +21,8 @@ public class EnemyPillar : EnemyCharacter
             {
                 if (!base.UseBothProjectileTypes)
                 {
-                    PoolingSystem.Instance.InstantiateAPS("EnemyProjectile", this.ProjectileEmitters[i].position, this.ProjectileEmitters[i].rotation);
+                    new Danmaku().GrapeshotDanmaku("EnemyProjectile", this.ProjectileEmitters[i].position, this.ProjectileEmitters[i].rotation.eulerAngles, 10, 2);
+                    //PoolingSystem.Instance.InstantiateAPS("EnemyProjectile", this.ProjectileEmitters[i].position, this.ProjectileEmitters[i].rotation);
                 }
                 else
                 {

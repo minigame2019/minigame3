@@ -15,11 +15,11 @@ public class PlayerController : MonoBehaviour
     {
         if ((!GameManager.Instance.GamePaused() && GameManager.Instance.GameRunning()) && (Input.GetButtonDown("Fire2")))
         {
-            this.character.Stats.MoveSpeed /= 2;
+            this.character.Stats.MoveSpeed /= 4;
         }
         if ((!GameManager.Instance.GamePaused() && GameManager.Instance.GameRunning()) && (Input.GetButtonUp("Fire2")))
         {
-            this.character.Stats.MoveSpeed *= 2;
+            this.character.Stats.MoveSpeed *= 4;
         }
 
         if ((!GameManager.Instance.GamePaused() && GameManager.Instance.GameRunning()) && (Input.GetButton("Fire1") || (Input.GetAxis("Fire1") > 0.5f)))

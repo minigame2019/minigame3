@@ -13,9 +13,23 @@ public class Projectile : MonoBehaviour, IDamageable<Transform>, IKillable, IMCh
     private RaycastHit hit;
     private RaycastHit[] hits = new RaycastHit[5];
 
+    public bool CanBoom;
+    public bool HaveBoomed;
+    public float BoomDistance;
+    
     private void Awake()
     {
         GameManager.Instance.RegisterProjectile(base.gameObject);
+    }
+
+    private void CheckBoom()
+    {
+        if(CanBoom && !HaveBoomed && this.currentDistance >= this.BoomDistance)
+        {
+            Debug.Log("boom");
+            new Danmaku().RoundDanmaku("EnemyProjectile", this.transform.position, this.transform.rotation.eulerAngles, 20);
+            HaveBoomed = true;
+        }
     }
 
     private void CheckForward()
@@ -50,7 +64,7 @@ public class Projectile : MonoBehaviour, IDamageable<Transform>, IKillable, IMCh
                 }
             }
             IDamageable<Transform> component = this.hit.transform.GetComponent<IDamageable<Transform>>();
-            Debug.Log(component);
+            //Debug.Log(component);
             if (component != null)
             {
                 Projectile projectile = this.hit.transform.GetComponent<Projectile>();
@@ -72,6 +86,7 @@ public class Projectile : MonoBehaviour, IDamageable<Transform>, IKillable, IMCh
 
     private void FixedUpdate()
     {
+        this.CheckBoom();
         this.CheckForward();
         this.MoveForward();
     }
@@ -91,6 +106,10 @@ public class Projectile : MonoBehaviour, IDamageable<Transform>, IKillable, IMCh
     private void OnEnable()
     {
         this.currentDistance = 0f;
+        if (this.CanBoom)
+        {
+            this.HaveBoomed = false;
+        }
     }
 
     public void TakeDamage(Transform hitObject)
