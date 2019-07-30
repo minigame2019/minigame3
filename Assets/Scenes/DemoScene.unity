@@ -245,7 +245,7 @@ MonoBehaviour:
   - prefab: {fileID: 8954191479963731303, guid: ada0a5fcca3ed8747b1f8bc896f11497,
       type: 3}
     amount: 10
-  - prefab: {fileID: 783400597}
+  - prefab: {fileID: 1837984743728401, guid: 162d8373c768789246d715304bae3fa5, type: 3}
     amount: 10
   - prefab: {fileID: 1832503946764126311, guid: 06d34c355a107be4ba9aca16b6a04825,
       type: 3}
@@ -790,36 +790,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659622166}
   m_CullTransparentMesh: 0
---- !u!1 &783400597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 783400598}
-  m_Layer: 0
-  m_Name: Explode
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &783400598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783400597}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -298.44464, y: -300.6075, z: 0.79249406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &889095177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1114,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1841774032
 GameObject:

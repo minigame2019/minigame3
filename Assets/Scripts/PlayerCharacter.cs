@@ -61,13 +61,17 @@ public class PlayerCharacter : CharacterBase
         else
         {
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Explode, -1f);
-            Collider[] colliderArray = Physics.OverlapSphere(base.transform.position, 4f, (int)GameManager.Instance.ProjectileLayer);
+            Collider[] colliderArray = Physics.OverlapSphere(base.transform.position, 2f, (int)GameManager.Instance.ProjectileLayer);
             for (int i = 0; i < colliderArray.Length; i++)
             {
-                IKillable component = colliderArray[i].attachedRigidbody.GetComponent<IKillable>();
-                if (component != null)
+                if (colliderArray[i].attachedRigidbody != null)
                 {
-                    component.Kill();
+                    IKillable component = colliderArray[i].attachedRigidbody.GetComponent<IKillable>();
+
+                    if (component != null)
+                    {
+                        component.Kill();
+                    }
                 }
             }
             PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);

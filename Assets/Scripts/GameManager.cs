@@ -64,29 +64,28 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(false);
             GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/White");
 
-
+            // projectiles white -> black
             for (int i = 0; i < PoolingSystem.Instance.pooledItems.Length; i++)
             {
                 GameObject firstItem = PoolingSystem.Instance.pooledItems[i][0];
-                Debug.Log(firstItem.name);
-                Debug.Log(firstItem.layer);
-                if (firstItem.layer != 11) continue;
+                if (firstItem.GetComponent<IMChangeable>() == null) continue;
+                if (firstItem.GetComponent<Projectile>() != null && firstItem.layer != 11) continue;
                 for (int j = 0; j < PoolingSystem.Instance.pooledItems[i].Count; j++)
                 {
-                    GameObject item = PoolingSystem.Instance.pooledItems[i][j];
-                    foreach (var part in item.GetComponentsInChildren<MeshRenderer>())
+                    IMChangeable item = PoolingSystem.Instance.pooledItems[i][j].GetComponent<IMChangeable>();
+                    if (item != null)
                     {
-                        part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkGrey");
+                        item.SwitchMaterialToNight(false);
                     }
                 }
             }
             for (int i = 0; i < PoolingSystem.Instance.poolingItems.Length; i++)
             {
                 PoolingItems item = PoolingSystem.Instance.poolingItems[i];
-                if (item.prefab.name != "Projectile") continue;
+                if (item.prefab.GetComponent<IMChangeable>() == null) continue;
+                if (item.prefab.GetComponent<Projectile>() != null && item.prefab.name != "Projectile") continue;
                 item.SwitchMaterialToNight(false);
             }
-            // projectiles white -> black
             // set black part destructable
             Debug.Log("Change to day");
         }
@@ -99,23 +98,25 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(true);
             GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkGrey");
 
-            for(int i = 0;i<PoolingSystem.Instance.pooledItems.Length;i++)
+            for (int i = 0; i < PoolingSystem.Instance.pooledItems.Length; i++)
             {
                 GameObject firstItem = PoolingSystem.Instance.pooledItems[i][0];
-                if (firstItem.layer != 11) continue;
+                if (firstItem.GetComponent<IMChangeable>() == null) continue;
+                if (firstItem.GetComponent<Projectile>() != null && firstItem.layer != 11) continue;
                 for (int j = 0; j < PoolingSystem.Instance.pooledItems[i].Count; j++)
                 {
-                    GameObject item = PoolingSystem.Instance.pooledItems[i][j];
-                    foreach (var part in item.GetComponentsInChildren<MeshRenderer>())
+                    IMChangeable item = PoolingSystem.Instance.pooledItems[i][j].GetComponent<IMChangeable>();
+                    if (item != null)
                     {
-                        part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/White");
+                        item.SwitchMaterialToNight(true);
                     }
                 }
             }
             for (int i = 0; i < PoolingSystem.Instance.poolingItems.Length; i++)
             {
                 PoolingItems item = PoolingSystem.Instance.poolingItems[i];
-                if (item.prefab.name != "Projectile") continue;
+                if (item.prefab.GetComponent<IMChangeable>() == null) continue;
+                if (item.prefab.GetComponent<Projectile>() != null && item.prefab.name != "Projectile") continue;
                 item.SwitchMaterialToNight(true);
             }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7451790558478945649}
   - component: {fileID: 7451790558475521365}
   - component: {fileID: 7451790558476521365}
-  - component: {fileID: 7451790558480629749}
+  - component: {fileID: 2089736655746955297}
   m_Layer: 13
   m_Name: Sphere
   m_TagString: Untagged
@@ -78,8 +78,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7451790558480629749
-MeshCollider:
+--- !u!135 &2089736655746955297
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -88,10 +88,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: c7f9089b84d6c6546ab18219643c2710, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.0049999994
+  m_Center: {x: 0.00000047683716, y: 0.00000047683716, z: 0}
 --- !u!1 &7451790558478520661
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 7451790558478520661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -300, y: -300, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 7451790558478945655}
   m_Father: {fileID: 0}
