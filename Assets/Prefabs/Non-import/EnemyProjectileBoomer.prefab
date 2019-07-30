@@ -99,12 +99,13 @@ MonoBehaviour:
   Speed: 4
   CanBeDestroyed: 0
   Radius: 0.2
-  BoomDistance: 8
   Distance: 30
   CollisionLayers:
     serializedVersion: 2
     m_Bits: 51712
   CanBoom: 1
+  HaveBoomed: 0
+  BoomDistance: 8
 --- !u!54 &4141581203386453047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d3b1edcb1b2cc3f429db66033e39562d, type: 2}
+  - {fileID: 2100000, guid: 484669fd834bfdc44a8eb0aa9d4521b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

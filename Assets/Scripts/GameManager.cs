@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
             //GameObject.Find("Floor").
             // player black -> white
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(true);
-            GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkGrey");
+            GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkFloor");
 
             for (int i = 0; i < PoolingSystem.Instance.pooledItems.Length; i++)
             {
@@ -325,6 +325,7 @@ public class GameManager : MonoBehaviour
         public GameObject BossEnemy;
 
         public GameObject Switch;
+        public GameObject Hunter;
 
         public GameObject RegularWall;
         public GameObject DestructableWall;

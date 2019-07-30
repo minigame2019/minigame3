@@ -34,8 +34,9 @@ public class EnemyPillar : EnemyCharacter
         }
     }
 
-    public override void TakeDamage(Transform hitObject)
+    /* public override void TakeDamage(Transform hitObject)
     {
+        
         for (int i = 0; i < this.MultiArmor.Length; i++)
         {
             if (hitObject == this.MultiArmor[i])
@@ -55,5 +56,5 @@ public class EnemyPillar : EnemyCharacter
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Hit, -1f);
             //base.StartCoroutine(base.HitColorChange());
         }
-    }
+    } */
 }

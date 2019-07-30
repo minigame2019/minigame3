@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,7 +171,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -254,6 +254,8 @@ MonoBehaviour:
       type: 3}
     amount: 10
   - prefab: {fileID: 194660450173588051, guid: a3a08e5178f13894c83389a2433668bf, type: 3}
+    amount: 10
+  - prefab: {fileID: 1642941983000230, guid: 0aac3b7a205d3b9f448a05d17a1a4e9a, type: 3}
     amount: 10
   defaultPoolAmount: 10
   poolExpand: 1
@@ -1240,6 +1242,8 @@ MonoBehaviour:
       type: 3}
     Switch: {fileID: 5837237958964966324, guid: 4c5c25dae04509f438f31e328c20f8a8,
       type: 3}
+    Hunter: {fileID: 6749269324053733995, guid: aea15a2e9ca493d449a573ee98bcec7b,
+      type: 3}
     RegularWall: {fileID: 5847497255358117570, guid: 5524fb78c1d68b747bd7283db4bb4efc,
       type: 3}
     DestructableWall: {fileID: 4937040170366292383, guid: 8d81268d2964fff4996d6f112247f0b9,
@@ -1302,26 +1306,30 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 24
   Waves:
-  - BasicEnemy: 1
+  - BasicEnemy: 0
     ArmorEnemy: 0
     PillarEnemy: 0
-    ArmorPillarEnemy: 3
+    ArmorPillarEnemy: 0
     Switch: 1
-  - BasicEnemy: 2
+    Hunter: 4
+  - BasicEnemy: 6
     ArmorEnemy: 2
-    PillarEnemy: 2
-    ArmorPillarEnemy: 2
+    PillarEnemy: 0
+    ArmorPillarEnemy: 0
     Switch: 1
-  - BasicEnemy: 2
-    ArmorEnemy: 2
-    PillarEnemy: 2
-    ArmorPillarEnemy: 2
-    Switch: 1
-  - BasicEnemy: 2
-    ArmorEnemy: 2
-    PillarEnemy: 2
-    ArmorPillarEnemy: 2
-    Switch: 1
+    Hunter: 4
+  - BasicEnemy: 10
+    ArmorEnemy: 6
+    PillarEnemy: 5
+    ArmorPillarEnemy: 1
+    Switch: 2
+    Hunter: 4
+  - BasicEnemy: 8
+    ArmorEnemy: 8
+    PillarEnemy: 8
+    ArmorPillarEnemy: 8
+    Switch: 3
+    Hunter: 4
 --- !u!1 &1408192677
 GameObject:
   m_ObjectHideFlags: 0
