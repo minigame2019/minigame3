@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private string currentSeed = string.Empty;
     private int ssn;
     private List<GameObject> registeredProjectiles = new List<GameObject>();
-
+    private PlayerInfo info;
     public bool isAtNight;
 
     public void AddEnemy()
@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         this.CurrentLevel = 1;
         isAtNight = false;
         this.MapGenerator = base.GetComponent<NewMapGenerator>();
+        info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
     }
 
     public void ClearProjectiles()
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
         this.GameMenus.BottomBar.canvasRenderer.SetAlpha(0f);
         this.GameMenus.BackBar.canvasRenderer.SetAlpha(0f);
         this.Switch();
+        info.Renew();
     }
 
     private void ReturnToMenu()

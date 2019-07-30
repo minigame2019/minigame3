@@ -6,7 +6,7 @@ public class PlayerCharacter : CharacterBase
     //public GameObject HealthPiece1;
     //public GameObject HealthPiece2;
     //public GameObject HealthPiece3;
-
+    public PlayerInfo info;
     public override void CooldownTimers()
     {
         if (base.CurrentCooldown > 0f)
@@ -48,6 +48,7 @@ public class PlayerCharacter : CharacterBase
     {
         CameraController.Shake(0.1f);
         base.Stats.Health--;
+        info.Renew();
         /*
         this.HealthPiece3.SetActive(base.Stats.Health >= 3);
         this.HealthPiece2.SetActive(base.Stats.Health >= 2);
@@ -64,6 +65,13 @@ public class PlayerCharacter : CharacterBase
             Collider[] colliderArray = Physics.OverlapSphere(base.transform.position, 4f, (int)GameManager.Instance.ProjectileLayer);
             for (int i = 0; i < colliderArray.Length; i++)
             {
+                Debug.Log("1:");
+                Debug.Log("1:"+colliderArray[i]);
+                Debug.Log("2:");
+                Debug.Log("2:" + colliderArray[i].attachedRigidbody);
+                Debug.Log("3:");
+                Debug.Log("3:" + colliderArray[i].attachedRigidbody.GetComponent<IKillable>());
+
                 IKillable component = colliderArray[i].attachedRigidbody.GetComponent<IKillable>();
                 if (component != null)
                 {
@@ -77,5 +85,7 @@ public class PlayerCharacter : CharacterBase
     public override void VStart()
     {
         CameraController.Instance.SetTarget(base.transform);
+        info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
+        info.Renew();
     }
 }
