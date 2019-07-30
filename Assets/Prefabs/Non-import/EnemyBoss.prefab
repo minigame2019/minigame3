@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 351443031257642208}
   - component: {fileID: 351443031256315072}
   - component: {fileID: 351443031255217664}
-  - component: {fileID: 351443031251109472}
+  - component: {fileID: 5742092384061227721}
   m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
@@ -78,8 +78,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &351443031251109472
-MeshCollider:
+--- !u!135 &5742092384061227721
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -88,10 +88,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: 6fa48d7a1bb2cf34c9d1340657854bd1, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &351443031257409730
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,7 +291,7 @@ GameObject:
   - component: {fileID: 351443031257642216}
   - component: {fileID: 351443031256315074}
   - component: {fileID: 351443031255217666}
-  - component: {fileID: 351443031251109474}
+  - component: {fileID: 6913514876332935897}
   m_Layer: 10
   m_Name: Forcefield
   m_TagString: Untagged
@@ -359,8 +358,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &351443031251109474
-MeshCollider:
+--- !u!135 &6913514876332935897
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -369,10 +368,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 6fa48d7a1bb2cf34c9d1340657854bd1, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.0050000004
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &351443031257409738
 GameObject:
   m_ObjectHideFlags: 0
