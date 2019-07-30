@@ -34,7 +34,7 @@ public class DestructableWall : MonoBehaviour, IDamageable<Transform>
         }
         else
         {
-            CameraController.Shake(0.1f);
+            //CameraController.Shake(0.1f);
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Explode, -1f);
             Destroy(base.gameObject);
         }
