@@ -189,9 +189,10 @@ MonoBehaviour:
   Speed: 15
   CanBeDestroyed: 1
   Radius: 0.3
-  BoomDistance: 0
   Distance: 100
   CollisionLayers:
     serializedVersion: 2
     m_Bits: 123904
   CanBoom: 0
+  HaveBoomed: 0
+  BoomDistance: 0
