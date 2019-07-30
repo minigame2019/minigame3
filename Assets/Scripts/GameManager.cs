@@ -194,6 +194,7 @@ public class GameManager : MonoBehaviour
         this.stageFailed = false;
         this.stageClear = false;
         this.inMenu = true;
+        this.GameMenus.GameStats.text = "";
         this.GameMenus.MainMenu.SetActive(true);
         this.GameMenus.PauseMenu.SetActive(false);
         this.GameMenus.StageClearMenu.SetActive(false);
