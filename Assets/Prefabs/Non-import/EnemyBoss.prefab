@@ -224,7 +224,7 @@ MonoBehaviour:
   CharacterMesh: {fileID: 351443031257642210}
   Stats:
     Health: 4
-    MoveSpeed: 3
+    MoveSpeed: 6
     TurnSpeed: 5
     AttackRange: 100
   Cooldown: 0.2
