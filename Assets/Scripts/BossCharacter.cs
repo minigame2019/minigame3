@@ -36,7 +36,7 @@ public class BossCharacter : EnemyCharacter
             switch(lastAttackWay)
             {
                 case 0:
-                    new Danmaku().RoundDanmaku("EnemyProjectileBoomer", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 120);
+                    //new Danmaku().RoundDanmaku("EnemyProjectileBoomer", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
                     break;
                 case 1:
                     new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 60);

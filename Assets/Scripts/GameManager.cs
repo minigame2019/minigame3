@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
         this.GameMenus.BottomBar.canvasRenderer.SetAlpha(0f);
         this.GameMenus.BackBar.canvasRenderer.SetAlpha(0f);
         this.Switch();
-        info.Renew();
+        //info.Renew();
     }
 
     private void ReturnToMenu()

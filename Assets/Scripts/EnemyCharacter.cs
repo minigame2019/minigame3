@@ -67,6 +67,7 @@ public class EnemyCharacter : CharacterBase
 
     public override void TakeDamage(Transform hitObject)
     {
+        Debug.Log(hitObject);
         if (hitObject == this.Armor)
         {
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Armor, -1f);
@@ -95,7 +96,6 @@ public class EnemyCharacter : CharacterBase
                     {
                         GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Armor, -1f);
                     }
-                    return;
                 }
             }
 
