@@ -102,6 +102,7 @@ public sealed class PoolingSystem : MonoBehaviour
         pooledItem.transform.position = itemPosition;
         pooledItem.transform.rotation = itemRotation;
         pooledItem.SetActive(true);
+
         return pooledItem;
     }
 
