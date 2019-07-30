@@ -156,13 +156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f579e88fd8299564fb59fa0490852cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 4
   CanBeDestroyed: 0
   Radius: 0.2
   Distance: 30
   CollisionLayers:
     serializedVersion: 2
     m_Bits: 51712
+  CanBoom: 0
+  HaveBoomed: 0
+  BoomDistance: 0
 --- !u!54 &5822498029708641225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 7451790558478520663}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 80, y: 80, z: 80}
+  m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children:
   - {fileID: 7451790558478945649}
   m_Father: {fileID: 7451790558478945653}

@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackAngle: -1
-  ShotCooldown: 1
+  ShotCooldown: 2
 --- !u!114 &351443032488160700
 MonoBehaviour:
   m_ObjectHideFlags: 0
