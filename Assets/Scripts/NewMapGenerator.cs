@@ -14,6 +14,7 @@ public class NewMapGenerator : MonoBehaviour
     public int ArmorPillarEnemySpawns = 2;
 
     public int AbsorberEnemySpawns = 2;
+    public int HunterEnemySpawns = 6;
 
     public int switchSpawns = 1;
 
@@ -348,7 +349,7 @@ public class NewMapGenerator : MonoBehaviour
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
-        /*
+        
         int hunterCnt = 0;
         while (hunterCnt < Mathf.Min(wave.Hunter, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
@@ -368,7 +369,7 @@ public class NewMapGenerator : MonoBehaviour
                 }
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
-        }*/
+        }
     }
 
     public void GenerateMap()
