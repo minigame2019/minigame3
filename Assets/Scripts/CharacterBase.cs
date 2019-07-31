@@ -39,7 +39,7 @@ public class CharacterBase : MonoBehaviour, IDamageable<Transform>, IKillable, I
     {
     }
 
-    public void SwitchMaterialToNight(bool isEnteringNight)
+    public virtual void SwitchMaterialToNight(bool isEnteringNight)
     {
         foreach (var part in GetComponentsInChildren<MeshRenderer>())
         {

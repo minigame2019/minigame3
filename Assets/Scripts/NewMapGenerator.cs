@@ -13,6 +13,8 @@ public class NewMapGenerator : MonoBehaviour
     public int PillarEnemySpawns = 3;
     public int ArmorPillarEnemySpawns = 2;
 
+    public int AbsorberEnemySpawns = 2;
+
     public int switchSpawns = 1;
 
     public string Seed;
@@ -24,6 +26,8 @@ public class NewMapGenerator : MonoBehaviour
     private List<Vector2> enemySpawns = new List<Vector2>();
     private List<Vector2> playerSpawns = new List<Vector2>();
     private List<int> usedEnemySpawns = new List<int>();
+
+    private Wave lastWave;
 
     private void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
@@ -203,7 +207,16 @@ public class NewMapGenerator : MonoBehaviour
         GameObject boss = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BossEnemy, new Vector3(this.enemySpawns[item].x, 0f, this.enemySpawns[item].y), Quaternion.identity);
         boss.transform.SetParent(GameManager.Instance.LevelContainer);
         GameManager.Instance.SetLevelBoss(boss);
-        int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
+        //int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
+
+        int index = GameManager.Instance.CurrentLevel - 1;
+        
+        if(index >= this.Waves.Length)
+        {
+            index = this.Waves.Length - 1;
+            this.Waves[index] = new Wave(this.Waves[index]);
+        }
+
         int basicEnemyCnt = 0;
         while (basicEnemyCnt < Mathf.Min(this.Waves[index].BasicEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
@@ -284,6 +297,28 @@ public class NewMapGenerator : MonoBehaviour
                 cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
+
+        int absorberEnemyCnt = 0;
+        while (absorberEnemyCnt < Mathf.Min(this.Waves[index].AbsorberEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        {
+            if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
+            {
+                return;
+            }
+            int cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            while (true)
+            {
+                if (!this.usedEnemySpawns.Contains(cnt))
+                {
+                    this.usedEnemySpawns.Add(cnt);
+                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.AbsorberEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    absorberEnemyCnt++;
+                    break;
+                }
+                cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            }
+        }
+
         int switchCnt = 0;
         while (switchCnt < Mathf.Min(this.Waves[index].Switch, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
@@ -304,6 +339,7 @@ public class NewMapGenerator : MonoBehaviour
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
+
     }
 
     public void GenerateMap()
@@ -762,6 +798,22 @@ public class NewMapGenerator : MonoBehaviour
         public int ArmorEnemy;
         public int PillarEnemy;
         public int ArmorPillarEnemy;
+        public int AbsorberEnemy;
         public int Switch;
+
+        private int zeroOrOne()
+        {
+            return (int)(new System.Random().NextDouble() + 0.7);
+        }
+
+        public Wave(Wave lastWave)
+        {
+            BasicEnemy = lastWave.BasicEnemy+ zeroOrOne();
+            ArmorEnemy = lastWave.ArmorEnemy + zeroOrOne();
+            PillarEnemy = lastWave.PillarEnemy + zeroOrOne();
+            ArmorPillarEnemy = lastWave.ArmorPillarEnemy + zeroOrOne();
+            AbsorberEnemy = lastWave.AbsorberEnemy + zeroOrOne();
+            Switch = lastWave.Switch;
+        }
     }
 }

@@ -1236,6 +1236,8 @@ MonoBehaviour:
       type: 3}
     PillarArmorEnemy: {fileID: 7111044285170714657, guid: 575d59ac243fd954798d902c1944fdf0,
       type: 3}
+    AbsorberEnemy: {fileID: 8285707780014065092, guid: eedef3c028935fb4a9749d632fe8bd02,
+      type: 3}
     BossEnemy: {fileID: 351443031257409732, guid: 9335a65793e6d584f900e8c7715ea769,
       type: 3}
     Switch: {fileID: 5837237958964966324, guid: 4c5c25dae04509f438f31e328c20f8a8,
@@ -1297,6 +1299,7 @@ MonoBehaviour:
   ArmorEnemySpawns: 4
   PillarEnemySpawns: 3
   ArmorPillarEnemySpawns: 2
+  AbsorberEnemySpawns: 2
   switchSpawns: 1
   Seed: 0
   useRandomSeed: 1
