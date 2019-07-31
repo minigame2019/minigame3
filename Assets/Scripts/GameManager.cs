@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         m_Fade.BackGroundControl(false);
-        
+        info.gameObject.SetActive(true);
         this.ClearProjectiles();
         this.TotalEnemies = 0;
         this.CurrentEnemies = 0;
@@ -239,6 +239,7 @@ public class GameManager : MonoBehaviour
         this.GameMenus.StageClearMenu.SetActive(false);
         this.GameMenus.StageFailedMenu.SetActive(false);
         this.FadeBlackBars(false);
+        info.gameObject.SetActive(false);
         if (this.LevelContainer.gameObject)
         {
             Destroy(this.LevelContainer.gameObject);
