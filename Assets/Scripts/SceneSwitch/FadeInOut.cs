@@ -11,7 +11,7 @@ public class FadeInOut : MonoBehaviour
     void Start()
     {
         rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);//使背景满屏
-        rawImage.color = Color.black;
+        rawImage.color = Color.clear;
     }
 
     void Update()
@@ -41,7 +41,10 @@ public class FadeInOut : MonoBehaviour
         if (b == true)
             isBlack = true;
         else
+        {
+            rawImage.color = Color.black;
             isBlack = false;
+        }
     }
 }
 
