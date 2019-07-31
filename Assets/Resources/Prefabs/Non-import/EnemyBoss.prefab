@@ -229,6 +229,7 @@ MonoBehaviour:
     AttackRange: 100
   Cooldown: 0.2
   Armor: {fileID: 351443031257642216}
+  isBoss: 1
   Jour:
   - {fileID: 351443031257642208}
   Nuit:

@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public bool isAtNight;
 
+    public bool bossExist = false;
+    public bool bossIsAlive = false;
+
     public bool eyecatchShowing = false;
     public bool isEyecatching = false;
     public FadeInOut m_Fade;
@@ -170,13 +173,31 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemy()
     {
         this.CurrentEnemies--;
-        this.levelBoss.CheckEnemyCount();
-        if (this.CurrentEnemies <= 0)
+        Debug.Log(this.bossExist);
+        Debug.Log(this.bossIsAlive);
+        if(this.bossExist)
         {
-            this.StageCleared();
+            if (!this.bossIsAlive)
+            {
+                WaveOver();
+                return;
+            }
+            this.levelBoss.CheckEnemyCount();           
+        }
+        else
+        {
+            if (this.CurrentEnemies <= 0)
+            {
+                WaveOver();
+            }
         }
     }
 
+    private void WaveOver()
+    {
+        PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);
+        this.StageCleared();
+    }
 
     public void ShowEyecatch(bool b = true)
     {

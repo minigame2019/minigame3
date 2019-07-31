@@ -350,7 +350,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 6683616525952790675}
   CharacterMesh: {fileID: 6683616525276106599}
   Stats:
-    Health: 3
+    Health: 500
     MoveSpeed: 8
     TurnSpeed: 10
     AttackRange: 100
