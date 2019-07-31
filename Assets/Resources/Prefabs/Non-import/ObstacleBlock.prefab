@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4937040171666072578}
   m_Layer: 15
   m_Name: ObstacleBlock
-  m_TagString: Untagged
+  m_TagString: Obstacle Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 2351490, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b4edd89dc518b9749b97779c3dd2a054, type: 2}
+      objectReference: {fileID: 2100000, guid: 90d7b4ec3a8d62743a501ac4a9d6a8d9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
 --- !u!1 &2628106603756210427 stripped

@@ -76,6 +76,18 @@ public class GameManager : MonoBehaviour
             // player white -> black
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(false);
             GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/White");
+            GameObject[] walls = GameObject.FindGameObjectsWithTag("Obstacle Wall");
+            foreach (var wall in walls)
+            {
+                if (wall.GetComponent<DestructableWall>() != null)
+                {
+                    wall.GetComponent<DestructableWall>().SwitchMaterialToNight(false);
+                }
+                else if (wall.GetComponent<NormalWall>() != null)
+                {
+                    wall.GetComponent<NormalWall>().SwitchMaterialToNight(false);
+                }
+            }
 
             // projectiles white -> black
             for (int i = 0; i < PoolingSystem.Instance.pooledItems.Length; i++)
@@ -109,6 +121,16 @@ public class GameManager : MonoBehaviour
             // player black -> white
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(true);
             GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkFloor");
+            GameObject[] walls = GameObject.FindGameObjectsWithTag("Obstacle Wall");
+            foreach (var wall in walls)
+            {
+                if (wall.GetComponent<DestructableWall>() != null) {
+                    wall.GetComponent<DestructableWall>().SwitchMaterialToNight(true);
+                }
+                else if (wall.GetComponent<NormalWall>() != null) {
+                    wall.GetComponent<NormalWall>().SwitchMaterialToNight(true);
+                }
+            }
 
             for (int i = 0; i < PoolingSystem.Instance.pooledItems.Length; i++)
             {
