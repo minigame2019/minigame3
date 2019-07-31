@@ -206,6 +206,9 @@ public class NewMapGenerator : MonoBehaviour
         int item = UnityEngine.Random.Range(0, this.enemySpawns.Count);
         this.usedEnemySpawns.Add(item);
         GameObject boss = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BossEnemy, new Vector3(this.enemySpawns[item].x, 0f, this.enemySpawns[item].y), Quaternion.identity);
+
+        
+
         boss.transform.SetParent(GameManager.Instance.LevelContainer);
         GameManager.Instance.SetLevelBoss(boss);
         //int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
@@ -240,7 +243,13 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(rnd))
                 {
                     this.usedEnemySpawns.Add(rnd);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BasicEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate(GameManager.Instance.GamePrefabs.BasicEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos =  PositionShowerManager.Instance.CreatePositionShower();
+                    pos.target = obj;
+
+
                     basicEnemyCnt++;
                     break;
                 }
