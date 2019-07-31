@@ -205,16 +205,31 @@ public class NewMapGenerator : MonoBehaviour
         Instantiate<GameObject>(GameManager.Instance.GamePrefabs.Player, new Vector3(this.playerSpawns[num].x, 0f, this.playerSpawns[num].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
         int item = UnityEngine.Random.Range(0, this.enemySpawns.Count);
         this.usedEnemySpawns.Add(item);
-        GameObject boss = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BossEnemy, new Vector3(this.enemySpawns[item].x, 0f, this.enemySpawns[item].y), Quaternion.identity);
+        //generate BOSS
+        int level = GameManager.Instance.CurrentLevel;
+        if (level == 2 || level == 4 || level == 6 || level == 7)
+        {
+            GameObject boss = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BossEnemy, new Vector3(this.enemySpawns[item].x, 0f, this.enemySpawns[item].y), Quaternion.identity);
+            boss.transform.SetParent(GameManager.Instance.LevelContainer);
+            GameManager.Instance.SetLevelBoss(boss);
 
+            GameManager.Instance.bossExist = true;
+            GameManager.Instance.bossIsAlive = true;
+
+            if(level == 2)
+            {
+                boss.SetActive(false);
+            }
+
+        }        
+        else
+        {
+            GameManager.Instance.bossExist = false;
+            GameManager.Instance.bossIsAlive = false;
+        }
         
-
-        boss.transform.SetParent(GameManager.Instance.LevelContainer);
-        GameManager.Instance.SetLevelBoss(boss);
-        //int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
-
         int index = GameManager.Instance.CurrentLevel - 1;
-
+        /*
         Wave thisWave = new Wave();
         if(index < this.Waves.Length)
         {
@@ -223,9 +238,9 @@ public class NewMapGenerator : MonoBehaviour
         else
         {
             thisWave = new Wave(lastWave);
-        }
-        GenerateEnemiewByWave(thisWave);
-        lastWave = thisWave;
+        }*/
+        GenerateEnemiewByWave(this.Waves[index]);
+        //lastWave = thisWave;
     }
 
     private void GenerateEnemiewByWave(Wave wave)

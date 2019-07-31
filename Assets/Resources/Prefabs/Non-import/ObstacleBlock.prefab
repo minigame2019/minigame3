@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a639b1450111a459d6352f11736d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 20
+  Health: 10
 --- !u!1001 &2628106603756060767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,14 +133,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4937040170366258621}
     m_Modifications:
-    - target: {fileID: 149668, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
-      propertyPath: m_Name
-      value: Cube Lava
-      objectReference: {fileID: 0}
-    - target: {fileID: 149668, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 444212, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -196,6 +188,14 @@ PrefabInstance:
     - target: {fileID: 444212, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 149668, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
+      propertyPath: m_Name
+      value: Cube Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 149668, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2351490, guid: 66d28d69564d5da4b8899830d51418a0, type: 3}
       propertyPath: m_Materials.Array.data[0]

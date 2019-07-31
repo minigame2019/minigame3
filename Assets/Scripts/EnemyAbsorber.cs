@@ -26,16 +26,7 @@ public class EnemyAbsorber : EnemyCharacter
 
         if (!GameManager.Instance.isAtNight)
         {
-            this.energy++;
-            if (this.energy > 4)
-            {
-                new Danmaku().RoundDanmaku("EnemyProjectileBoomer", this.transform.position, this.transform.rotation.eulerAngles, 45);
-            }
-            else if (this.energy > 0)
-            {
-                new Danmaku().RoundDanmaku("EnemyPrijectilePurple", this.transform.position, this.transform.rotation.eulerAngles, 15);
-            }
-            return;
+            new Danmaku().RoundDanmaku("EnemyProjectileBoomer", this.transform.position, this.transform.rotation.eulerAngles, 45);
         }
 
         if (GameManager.Instance.isAtNight)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,13 @@ public class GameManager : MonoBehaviour
     public Prefabs GamePrefabs;
     public Sounds GameSounds;
     public Eyecatchs GameEyecatchs;
+
+    //CG Setting
+    public Image startCg;
+    public int id_nowCg = 0;
+    private int num_startCg = 5;
+    public bool isStartCG = false;
+
     public LayerMask CharacterLayer;
     public LayerMask EnemyLayer;
     public LayerMask ProjectileLayer;
@@ -34,6 +42,10 @@ public class GameManager : MonoBehaviour
 
     public bool isAtNight;
 
+    public bool bossExist = false;
+    public bool bossIsAlive = false;
+
+    
     public bool eyecatchShowing = false;
     public bool isEyecatching = false;
     public FadeInOut m_Fade;
@@ -52,6 +64,7 @@ public class GameManager : MonoBehaviour
         isAtNight = false;
         IsSwitchShowed = false;
         this.MapGenerator = base.GetComponent<NewMapGenerator>();
+        startCg.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
     }
 
@@ -170,13 +183,31 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemy()
     {
         this.CurrentEnemies--;
-        this.levelBoss.CheckEnemyCount();
-        if (this.CurrentEnemies <= 0)
+        Debug.Log(this.bossExist);
+        Debug.Log(this.bossIsAlive);
+        if(this.bossExist)
         {
-            this.StageCleared();
+            if (!this.bossIsAlive)
+            {
+                WaveOver();
+                return;
+            }
+            this.levelBoss.CheckEnemyCount();           
+        }
+        else
+        {
+            if (this.CurrentEnemies <= 0)
+            {
+                WaveOver();
+            }
         }
     }
 
+    private void WaveOver()
+    {
+        PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);
+        this.StageCleared();
+    }
 
     public void ShowEyecatch(bool b = true)
     {
@@ -195,7 +226,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         m_Fade.BackGroundControl(false);
-        
+        info.gameObject.SetActive(true);
         this.ClearProjectiles();
         this.TotalEnemies = 0;
         this.CurrentEnemies = 0;
@@ -230,6 +261,7 @@ public class GameManager : MonoBehaviour
         this.GameMenus.StageClearMenu.SetActive(false);
         this.GameMenus.StageFailedMenu.SetActive(false);
         this.FadeBlackBars(false);
+        info.gameObject.SetActive(false);
         if (this.LevelContainer.gameObject)
         {
             Destroy(this.LevelContainer.gameObject);
@@ -262,6 +294,38 @@ public class GameManager : MonoBehaviour
         this.GameMenus.StageFailedMenu.SetActive(true);
         this.FadeBlackBars(true);
     }
+    
+    /*
+    public void CGPlay()
+    {
+        startCg.gameObject.SetActive(true);
+        for (int i=1;i<=num_startCg;i++)
+        {
+            id_nowCg = i;
+            string path = "Sprites/startCG/" + i.ToString();
+            Sprite spriteNow = Resources.Load(path, typeof(Sprite)) as Sprite;
+            Debug.Log(spriteNow);
+            startCg.GetComponent<Image>().sprite = spriteNow;
+            Thread.Sleep(2000);
+            m_Fade.BackGroundControl(false);
+        }
+        //isStartCG = false;
+        //startCg.gameObject.SetActive(false);
+    }
+    */
+
+    public void NextCG()
+    {
+        if (id_nowCg < 0)
+            return;
+        if(id_nowCg<num_startCg)
+        {
+            id_nowCg++;
+            m_Fade.BackGroundControl(false);
+            string path = "Sprites/startCG/" + id_nowCg.ToString();
+            startCg.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+        }
+    }
 
     private void Start()
     {
@@ -270,6 +334,8 @@ public class GameManager : MonoBehaviour
         this.GameMenus.BottomBar.canvasRenderer.SetAlpha(0f);
         this.GameMenus.BackBar.canvasRenderer.SetAlpha(0f);
         this.stageFailed = true;
+        isStartCG = true;
+        
     }
 
     public void TogglePause()
@@ -282,8 +348,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CurrentEnemies);
-        if (isEyecatching)
+        if (isStartCG)
+        {
+            if (id_nowCg == 0) 
+            {
+                startCg.gameObject.SetActive(true);
+                NextCG();
+            }
+            if (Input.GetButtonDown("Start"))
+            {
+                if(id_nowCg<num_startCg)
+                {
+                    NextCG();
+                }
+                else
+                {
+                    isStartCG = false;
+                    startCg.gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (isEyecatching)
         {
             if (!eyecatchShowing)
             {
@@ -360,7 +445,6 @@ public class GameManager : MonoBehaviour
         public GameObject StageClearMenu;
         public GameObject StageFailedMenu;
         public Text GameStats;
-
         public GameObject MessagePanel;
     }
 
@@ -401,5 +485,7 @@ public class GameManager : MonoBehaviour
         public GameObject Background;
         public GameObject Eyecatch1;
     }
+
+
 
 }
