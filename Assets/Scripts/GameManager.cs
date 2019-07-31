@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Menus GameMenus;
     public Prefabs GamePrefabs;
     public Sounds GameSounds;
+    public Eyecatchs GameEyecatchs;
     public LayerMask CharacterLayer;
     public LayerMask EnemyLayer;
     public LayerMask ProjectileLayer;
@@ -30,6 +31,10 @@ public class GameManager : MonoBehaviour
     private List<GameObject> registeredProjectiles = new List<GameObject>();
     private PlayerInfo info;
     public bool isAtNight;
+
+    public bool eyecatchShowing = false;
+    public bool isEyecatching = false;
+    public FadeInOut m_Fade;
 
     public void AddEnemy()
     {
@@ -167,8 +172,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void ShowEyecatch(bool b = true)
+    {
+        GameEyecatchs.Background.SetActive(b);
+        switch (CurrentLevel)
+        {
+            case 2:
+                GameEyecatchs.Eyecatch1.SetActive(b);
+                break;
+            default:
+                break;
+        }
+        eyecatchShowing = b;    
+    }
+
     public void Restart()
     {
+        m_Fade.BackGroundControl(false);
+        
         this.ClearProjectiles();
         this.TotalEnemies = 0;
         this.CurrentEnemies = 0;
@@ -255,7 +277,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (this.inMenu)
+        if (isEyecatching)
+        {
+            if (!eyecatchShowing)
+            {
+                m_Fade.BackGroundControl(false);
+                ShowEyecatch(true);
+            }
+            if (Input.GetButtonDown("Start"))
+            {
+                ShowEyecatch(false);
+                isEyecatching = false;
+                this.Restart();
+            }
+
+        }
+        else if (this.inMenu)
         {
             if (Input.GetButtonDown("Quit"))
             {
@@ -270,7 +307,8 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Start"))
             {
-                this.Restart();
+                isEyecatching = true;
+                //this.Restart();
             }
         }
         else if (this.stageFailed)
@@ -343,4 +381,12 @@ public class GameManager : MonoBehaviour
         public AudioClip Explode;
         public AudioClip Armor;
     }
+
+    [Serializable]
+    public class Eyecatchs
+    {
+        public GameObject Background;
+        public GameObject Eyecatch1;
+    }
+
 }
