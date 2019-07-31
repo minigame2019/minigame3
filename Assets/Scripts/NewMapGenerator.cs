@@ -13,6 +13,8 @@ public class NewMapGenerator : MonoBehaviour
     public int PillarEnemySpawns = 3;
     public int ArmorPillarEnemySpawns = 2;
 
+    public int AbsorberEnemySpawns = 2;
+
     public int switchSpawns = 1;
 
     public string Seed;
@@ -24,6 +26,8 @@ public class NewMapGenerator : MonoBehaviour
     private List<Vector2> enemySpawns = new List<Vector2>();
     private List<Vector2> playerSpawns = new List<Vector2>();
     private List<int> usedEnemySpawns = new List<int>();
+
+    private Wave lastWave;
 
     private void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
@@ -203,9 +207,27 @@ public class NewMapGenerator : MonoBehaviour
         GameObject boss = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.BossEnemy, new Vector3(this.enemySpawns[item].x, 0f, this.enemySpawns[item].y), Quaternion.identity);
         boss.transform.SetParent(GameManager.Instance.LevelContainer);
         GameManager.Instance.SetLevelBoss(boss);
-        int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
+        //int index = Mathf.Min((int)(this.Waves.Length - 1), (int)(GameManager.Instance.CurrentLevel - 1));
+
+        int index = GameManager.Instance.CurrentLevel - 1;
+
+        Wave thisWave = new Wave();
+        if(index < this.Waves.Length)
+        {
+            thisWave = this.Waves[index];
+        }
+        else
+        {
+            thisWave = new Wave(lastWave);
+        }
+        GenerateEnemiewByWave(thisWave);
+        lastWave = thisWave;
+    }
+
+    private void GenerateEnemiewByWave(Wave wave)
+    {
         int basicEnemyCnt = 0;
-        while (basicEnemyCnt < Mathf.Min(this.Waves[index].BasicEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (basicEnemyCnt < Mathf.Min(wave.BasicEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -225,7 +247,7 @@ public class NewMapGenerator : MonoBehaviour
             }
         }
         int armorEnemyCnt = 0;
-        while (armorEnemyCnt < Mathf.Min(this.Waves[index].ArmorEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (armorEnemyCnt < Mathf.Min(wave.ArmorEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -245,7 +267,7 @@ public class NewMapGenerator : MonoBehaviour
             }
         }
         int pillarEnemyCnt = 0;
-        while (pillarEnemyCnt < Mathf.Min(this.Waves[index].PillarEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (pillarEnemyCnt < Mathf.Min(wave.PillarEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -265,7 +287,7 @@ public class NewMapGenerator : MonoBehaviour
             }
         }
         int armorPillarEnemyCnt = 0;
-        while (armorPillarEnemyCnt < Mathf.Min(this.Waves[index].ArmorPillarEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (armorPillarEnemyCnt < Mathf.Min(wave.ArmorPillarEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -284,8 +306,30 @@ public class NewMapGenerator : MonoBehaviour
                 cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
+
+        int absorberEnemyCnt = 0;
+        while (absorberEnemyCnt < Mathf.Min(wave.AbsorberEnemy, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        {
+            if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
+            {
+                return;
+            }
+            int cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            while (true)
+            {
+                if (!this.usedEnemySpawns.Contains(cnt))
+                {
+                    this.usedEnemySpawns.Add(cnt);
+                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.AbsorberEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    absorberEnemyCnt++;
+                    break;
+                }
+                cnt = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            }
+        }
+
         int switchCnt = 0;
-        while (switchCnt < Mathf.Min(this.Waves[index].Switch, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (switchCnt < Mathf.Min(wave.Switch, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -304,9 +348,9 @@ public class NewMapGenerator : MonoBehaviour
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
-
+        /*
         int hunterCnt = 0;
-        while (hunterCnt < Mathf.Min(this.Waves[index].Hunter, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        while (hunterCnt < Mathf.Min(wave.Hunter, this.enemySpawns.Count - this.usedEnemySpawns.Count))
         {
             if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
             {
@@ -324,7 +368,7 @@ public class NewMapGenerator : MonoBehaviour
                 }
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
-        }
+        }*/
     }
 
     public void GenerateMap()
@@ -783,7 +827,32 @@ public class NewMapGenerator : MonoBehaviour
         public int ArmorEnemy;
         public int PillarEnemy;
         public int ArmorPillarEnemy;
-        public int Switch;
+        public int AbsorberEnemy;
         public int Hunter;
+
+        public int Switch;
+
+
+        private int zeroOrOne(float rate)
+        {
+            return (int)(new System.Random().NextDouble() + rate);
+        }
+
+        public Wave()
+        {
+
+        }
+
+        public Wave(Wave lastWave)
+        {
+            BasicEnemy = lastWave.BasicEnemy+ zeroOrOne(0.8f);
+            ArmorEnemy = lastWave.ArmorEnemy + zeroOrOne(0.8f);
+            PillarEnemy = lastWave.PillarEnemy + zeroOrOne(0.7f);
+            ArmorPillarEnemy = lastWave.ArmorPillarEnemy + zeroOrOne(0.7f);
+            AbsorberEnemy = lastWave.AbsorberEnemy + zeroOrOne(0.5f);
+            Hunter = lastWave.Hunter + zeroOrOne(0.8f);
+            Switch = lastWave.Switch + zeroOrOne(0.3f);
+        }
+        
     }
 }

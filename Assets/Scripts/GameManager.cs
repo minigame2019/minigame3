@@ -360,6 +360,9 @@ public class GameManager : MonoBehaviour
         public GameObject ArmorEnemy;
         public GameObject PillarEnemy;
         public GameObject PillarArmorEnemy;
+
+        public GameObject AbsorberEnemy;
+
         public GameObject BossEnemy;
 
         public GameObject Switch;
