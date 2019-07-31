@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     private int ssn;
     private List<GameObject> registeredProjectiles = new List<GameObject>();
     private PlayerInfo info;
+    private HelpMessageStats helpMessageStats;
+
     public bool isAtNight;
 
     public bool eyecatchShowing = false;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(this.Version);
         this.CurrentLevel = 1;
         isAtNight = false;
+        IsSwitchShowed = false;
         this.MapGenerator = base.GetComponent<NewMapGenerator>();
         info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
     }
@@ -60,6 +63,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /* UI */
+    public bool IsSwitchShowed { get => helpMessageStats.isSwitch; set => helpMessageStats.isSwitch = value; }
+
+    /* Switch between day and night */
     public void Switch()
     {
         if (isAtNight)
@@ -99,7 +106,6 @@ public class GameManager : MonoBehaviour
         {
             // Change backgrond light, floor, player and projectiles
             // floor white -> black
-            //GameObject.Find("Floor").
             // player black -> white
             FindObjectOfType<PlayerCharacter>().SwitchMaterialToNight(true);
             GameObject.Find("Floor").GetComponent<Renderer>().material = Resources.Load<Material>("Materials/DarkFloor");
@@ -131,7 +137,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Change to night");
         }
         isAtNight = !isAtNight;
-        //throw new NotImplementedException();
     }
 
     private void FadeBlackBars(bool fadeIn)
@@ -338,6 +343,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private struct HelpMessageStats
+    {
+        public bool isSwitch;
+    }
+
     [Serializable]
     public class Menus
     {
@@ -349,6 +359,8 @@ public class GameManager : MonoBehaviour
         public GameObject StageClearMenu;
         public GameObject StageFailedMenu;
         public Text GameStats;
+
+        public GameObject MessagePanel;
     }
 
     [Serializable]

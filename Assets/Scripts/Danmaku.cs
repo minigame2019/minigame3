@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Danmaku : MonoBehaviour
+public class Danmaku
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // 
     public void RoundDanmaku(string itemType, Vector3 position, Vector3 direction, float angle)
@@ -32,11 +27,5 @@ public class Danmaku : MonoBehaviour
 
 
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

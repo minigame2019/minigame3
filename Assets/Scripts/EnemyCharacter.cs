@@ -149,7 +149,7 @@ public class EnemyCharacter : CharacterBase
         for (int i = 0; i < this.displayMaterials.Length; i++)
         {
             this.displayMaterials[i] = componentsInChildren[i].material;
-            this.displayColors[i] = this.displayMaterials[i].color;
+            //this.displayColors[i] = this.displayMaterials[i].color;
         }
     }
 }
