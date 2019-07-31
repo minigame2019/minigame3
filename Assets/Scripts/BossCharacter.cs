@@ -36,10 +36,10 @@ public class BossCharacter : EnemyCharacter
             switch(lastAttackWay)
             {
                 case 0:
-                    new Danmaku().RoundDanmaku("EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
+                    new Danmaku().RoundDanmaku("EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 20);
                     break;
                 case 1:
-                    new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 60);
+                    new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
                     break;
                 default:
                     PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);

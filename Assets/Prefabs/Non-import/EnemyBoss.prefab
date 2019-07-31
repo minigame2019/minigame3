@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5d7b7feace41ac488218b3f5b94a5e3, type: 2}
+  - {fileID: 2100000, guid: 7ab2a10302813d8489a053519aead875, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   CharacterMesh: {fileID: 351443031257642210}
   Stats:
     Health: 4
-    MoveSpeed: 3
+    MoveSpeed: 6
     TurnSpeed: 5
     AttackRange: 100
   Cooldown: 0.2
@@ -338,7 +338,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fa48d7a1bb2cf34c9d1340657854bd1, type: 3}
+  - {fileID: 2100000, guid: b9fd1bd971b1c9a145f178f0880296fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
