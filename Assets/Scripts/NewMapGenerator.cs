@@ -304,6 +304,27 @@ public class NewMapGenerator : MonoBehaviour
                 rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
             }
         }
+
+        int hunterCnt = 0;
+        while (hunterCnt < Mathf.Min(this.Waves[index].Hunter, this.enemySpawns.Count - this.usedEnemySpawns.Count))
+        {
+            if (this.usedEnemySpawns.Count >= this.enemySpawns.Count)
+            {
+                return;
+            }
+            int rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            while (true)
+            {
+                if (!this.usedEnemySpawns.Contains(rnd))
+                {
+                    this.usedEnemySpawns.Add(rnd);
+                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.Hunter, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    hunterCnt++;
+                    break;
+                }
+                rnd = UnityEngine.Random.Range(0, this.enemySpawns.Count);
+            }
+        }
     }
 
     public void GenerateMap()
@@ -763,5 +784,6 @@ public class NewMapGenerator : MonoBehaviour
         public int PillarEnemy;
         public int ArmorPillarEnemy;
         public int Switch;
+        public int Hunter;
     }
 }
