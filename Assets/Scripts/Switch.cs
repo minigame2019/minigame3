@@ -39,4 +39,22 @@ public class Switch : MonoBehaviour, IDamageable<Transform>
             Debug.Log("Triggered");
         }
     }
+
+    void OnBecameVisible()
+    {
+        Debug.Log(GameManager.Instance.IsSwitchShowed);
+        if (GameManager.Instance.IsSwitchShowed == false)
+        {
+            StartCoroutine("ShowMessage");
+            GameManager.Instance.IsSwitchShowed = true;
+        }
+    }
+
+    private IEnumerator ShowMessage()
+    {
+
+        GameManager.Instance.GameMenus.MessagePanel.SetActive(true);
+        GameManager.Instance.GameMenus.MessagePanel.transform.Find("SwitchHelMessage").gameObject.SetActive(true);
+        yield return new WaitForSeconds(2);
+    }
 }
