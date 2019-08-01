@@ -9,7 +9,7 @@ public class EnemyHunter : EnemyCharacter
         PlayerCharacter player = other.rigidbody.GetComponent<PlayerCharacter>();
         if (player != null)
         {
-            Kill();
+            TakeDamage(this.Jour[0]);
             player.TakeDamage(other.transform);
         }
     }

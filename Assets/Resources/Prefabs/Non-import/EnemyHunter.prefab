@@ -187,11 +187,12 @@ MonoBehaviour:
   Rigidbody: {fileID: 6590800962859196747}
   CharacterMesh: {fileID: 5390393460321582124}
   Stats:
-    Health: 2
+    Health: 1
     MoveSpeed: 8
     TurnSpeed: 8
     AttackRange: 40
   Cooldown: 1
+  canMove: 1
   Armor: {fileID: 0}
   isBoss: 0
   Jour:
