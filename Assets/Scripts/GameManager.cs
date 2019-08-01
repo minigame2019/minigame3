@@ -429,6 +429,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            id_nowHelp = 0;
             inHelp = false;
             help.gameObject.SetActive(false);
         }
