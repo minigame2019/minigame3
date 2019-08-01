@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private HelpMessageStats helpMessageStats;
 
     public bool isAtNight;
-
+    public bool isCheating = true;
     public bool bossExist = false;
     public bool bossIsAlive = false;
 
@@ -256,6 +256,24 @@ public class GameManager : MonoBehaviour
             case 2:
                 num = GameEyecatchs.num2;
                 break;
+            case 3:
+                num = GameEyecatchs.num3;
+                break;
+            case 4:
+                num = GameEyecatchs.num4;
+                break;
+            case 5:
+                num = GameEyecatchs.num5;
+                break;
+            case 6:
+                num = GameEyecatchs.num6;
+                break;
+            case 7:
+                num = GameEyecatchs.num7;
+                break;
+            case 8:
+                num = GameEyecatchs.num8;
+                break;
             default:
                 break;
         }
@@ -268,9 +286,19 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            id_nowEyecatch = 0;
             SetEyecatchActive(false);
             isEyecatching = false;
-            Restart();
+            if(CurrentLevel<8)
+            {
+                Restart();
+            }
+            else
+            {
+                CurrentLevel = 1;
+                stageFailed = true;
+                ReturnToMenu();
+            }
         }
     }
 
@@ -404,6 +432,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isCheating)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                StageCleared();
+            }
+        }
         if (isStartCG)
         {
             if (id_nowCg == 0) 
@@ -535,12 +570,13 @@ public class GameManager : MonoBehaviour
         public GameObject Eyecatch;
 
         //第x关前的图片数量
-        public int num2 =2;
-        public int num3=2;
-        public int num4=2;
+        public int num2 = 2;
+        public int num3 = 2;
+        public int num4 = 2;
         public int num5 = 2;
-        public int num6 = 2;
+        public int num6 = 1;
         public int num7 = 2;
+        public int num8 = 1;
     }
 
 
