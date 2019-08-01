@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 84889884}
   - component: {fileID: 84889883}
   m_Layer: 5
-  m_Name: Eyecatch1
+  m_Name: Eyecatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1494,9 +1494,16 @@ MonoBehaviour:
     Armor: {fileID: 0}
   GameEyecatchs:
     Background: {fileID: 1360796944}
-    Eyecatch1: {fileID: 84889881}
+    Eyecatch: {fileID: 84889881}
+    num2: 2
+    num3: 2
+    num4: 2
+    num5: 2
+    num6: 2
+    num7: 2
   startCg: {fileID: 1505597042}
   id_nowCg: 0
+  id_nowEyecatch: 0
   isStartCG: 0
   CharacterLayer:
     serializedVersion: 2
