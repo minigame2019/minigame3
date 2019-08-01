@@ -29,12 +29,13 @@ public class DestructableWall : MonoBehaviour, IDamageable<Transform>, IMChangea
         this.Health--;
         if (this.Health > 0)
         {
-            GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Hit, -1f);
+            //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Hit, -1f);
             //base.StartCoroutine(this.HitColorChange());
         }
         else
         {
             //CameraController.Shake(0.1f);
+            PoolingSystem.Instance.InstantiateAPS("Explode", base.transform.position, Quaternion.identity);
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Explode, -1f);
             Destroy(base.gameObject);
         }

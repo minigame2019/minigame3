@@ -62,7 +62,7 @@ public class EnemyCharacter : CharacterBase
             base.CurrentCooldown = base.Cooldown;
             string itemType = !this.UseBothProjectileTypes ? "EnemyProjectile" : ((UnityEngine.Random.Range(0, 100) <= 50) ? "EnemyProjectilePurple" : "EnemyProjectile");
             PoolingSystem.Instance.InstantiateAPS(itemType, base.CharacterMesh.position, base.CharacterMesh.rotation);
-            GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+            //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
         }
     }
 
