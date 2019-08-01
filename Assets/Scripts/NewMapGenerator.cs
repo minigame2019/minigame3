@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class NewMapGenerator : MonoBehaviour
 {
+    Sprite enemySprite;
+    Sprite switchSprite;
+    Sprite bossSprite;
+
     public int width;
     public int height;
     public int smooth = 2;
@@ -29,6 +33,17 @@ public class NewMapGenerator : MonoBehaviour
     private List<int> usedEnemySpawns = new List<int>();
 
     private Wave lastWave;
+
+
+    private void Start()
+    {
+        this.enemySprite = Resources.Load<Sprite>("Sprites/enemyArrow");
+        this.bossSprite = Resources.Load<Sprite>("Sprites/bossArrow");
+        this.switchSprite = Resources.Load<Sprite>("Sprites/switchArrow");
+        Debug.Log(enemySprite);
+        Debug.Log(bossSprite);
+        Debug.Log(switchSprite);
+    }
 
     private void ConnectClosestRooms(List<Room> allRooms, bool forceAccessibilityFromMainRoom = false)
     {
@@ -261,9 +276,8 @@ public class NewMapGenerator : MonoBehaviour
                     GameObject obj = Instantiate(GameManager.Instance.GamePrefabs.BasicEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity);
                     obj.transform.SetParent(GameManager.Instance.LevelContainer);
 
-                    PositionShower pos =  PositionShowerManager.Instance.CreatePositionShower();
+                    PositionShower pos =  PositionShowerManager.Instance.CreatePositionShower(enemySprite);
                     pos.target = obj;
-
 
                     basicEnemyCnt++;
                     break;
@@ -284,7 +298,12 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(rnd))
                 {
                     this.usedEnemySpawns.Add(rnd);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.ArmorEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.ArmorEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos = PositionShowerManager.Instance.CreatePositionShower(enemySprite);
+                    pos.target = obj;
+
                     armorEnemyCnt++;
                     break;
                 }
@@ -304,7 +323,12 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(rnd))
                 {
                     this.usedEnemySpawns.Add(rnd);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.PillarEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.PillarEnemy, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos = PositionShowerManager.Instance.CreatePositionShower(bossSprite);
+                    pos.target = obj;
+
                     pillarEnemyCnt++;
                     break;
                 }
@@ -324,7 +348,11 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(cnt))
                 {
                     this.usedEnemySpawns.Add(cnt);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.PillarArmorEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.PillarArmorEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos = PositionShowerManager.Instance.CreatePositionShower(bossSprite);
+                    pos.target = obj;
                     armorPillarEnemyCnt++;
                     break;
                 }
@@ -345,7 +373,11 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(cnt))
                 {
                     this.usedEnemySpawns.Add(cnt);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.AbsorberEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.AbsorberEnemy, new Vector3(this.enemySpawns[cnt].x, 0f, this.enemySpawns[cnt].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos = PositionShowerManager.Instance.CreatePositionShower(bossSprite);
+                    pos.target = obj;
                     absorberEnemyCnt++;
                     break;
                 }
@@ -366,7 +398,11 @@ public class NewMapGenerator : MonoBehaviour
                 if (!this.usedEnemySpawns.Contains(rnd))
                 {
                     this.usedEnemySpawns.Add(rnd);
-                    Instantiate<GameObject>(GameManager.Instance.GamePrefabs.Switch, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity).transform.SetParent(GameManager.Instance.LevelContainer);
+                    GameObject obj = Instantiate<GameObject>(GameManager.Instance.GamePrefabs.Switch, new Vector3(this.enemySpawns[rnd].x, 0f, this.enemySpawns[rnd].y), Quaternion.identity);
+                    obj.transform.SetParent(GameManager.Instance.LevelContainer);
+
+                    PositionShower pos = PositionShowerManager.Instance.CreatePositionShower(switchSprite);
+                    pos.target = obj;
                     switchCnt++;
                     break;
                 }

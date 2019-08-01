@@ -18,11 +18,17 @@ public class PositionShowerManager : MonoSingleton<PositionShowerManager>
         
     }
 
-    public PositionShower CreatePositionShower()
+    public PositionShower CreatePositionShower(Sprite sprite)
     {
         GameObject obj = Instantiate(new GameObject(),this.transform);
+        
+        Image image = obj.AddComponent<Image>();
+        image.sprite = sprite;
+
         PositionShower positionShower = obj.AddComponent<PositionShower>();
         this.positionShowers.Add(positionShower);
+        positionShower.image = image; 
+        
         return positionShower;
     }
 

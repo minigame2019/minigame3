@@ -8,71 +8,60 @@ public class PositionShower : MonoBehaviour
     public Vector3 targetPos;
     public GameObject player;
     public GameObject target;
-    Sprite sprite;
+    public Image image;
     // Start is called before the first frame update
-    GameObject shower;
     RectTransform rectTransform;
-    Text t;
-    private void Awake()
+    public void SetColor(Color color)
     {
-
-        player = FindObjectOfType<PlayerCharacter>().gameObject;
-        //shower = Instantiate(Resources.Load("Prefabs/Non-import/Triangle") as GameObject,this.transform);
-       // rectTransform = this.gameObject.AddComponent<RectTransform>();
-        t = this.gameObject.AddComponent<Text>();
-
+        image.color = color;
     }
-
+    private void Awake()
+    {       
+        player = FindObjectOfType<PlayerCharacter>().gameObject;
+        rectTransform = this.transform.GetComponent<RectTransform>();
+        rectTransform.localScale = new Vector2((float)0.5, (float)0.5);
+    }
     void Start()
     {
         
     }
-    bool flag = false;
     // Update is called once per frame
     void Update()
     {
         if (this.target == null || this.player == null)
         {
-            Destroy(this.shower);
+            Destroy(this.image);
             Destroy(this.gameObject);
             Destroy(this);
             return;
         }
         if (!IsOutside())
         {
-            t.enabled = false;
+            image.enabled = false;
             return;
         }
         else
         {
-            t.enabled = true;
+            image.enabled = true;
         }
-        rectTransform = this.transform.GetComponent<RectTransform>();
+        
         playerPos = player.GetComponent<Transform>().position;
         targetPos = target.GetComponent<Transform>().position;
-        t.text = "t";
-        t.font = PositionShowerManager.Instance.font;
 
         Vector3 direction = (targetPos - playerPos);
         direction = ToEdge(direction);
-
         rectTransform.localPosition = direction;
-        rectTransform.sizeDelta = new Vector2(20, 20);
-        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        rectTransform.localRotation = Quaternion.AngleAxis(angle,Vector3.forward);
     }
     
     Vector3 ToEdge(Vector3 input)
     {
         float width = (float)Screen.width;
         float height = (float)Screen.height;
-        Debug.Log(height / width);
         input.y = 0;
         Vector3 output = new Vector3(input.x, input.z,0);
         output.Normalize();
-        Debug.Log(output.x);
-
-        Debug.Log(output.y);
-
 
         if (Mathf.Abs(output.x) < 0.01f)
         {
@@ -96,7 +85,6 @@ public class PositionShower : MonoBehaviour
                 }
             }
         }
-        Debug.Log(output);
         float l = 20;
         output = (output.magnitude - l) * output.normalized;
         return output;
