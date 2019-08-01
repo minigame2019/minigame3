@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
     private int num_startCg = 5;
     public bool isStartCG = false;
 
+    //Help
+    public GameObject help;
+    public int id_nowHelp = 0;
+    public int num_help = 1;
+    private bool inHelp = false;
+
     public LayerMask CharacterLayer;
     public LayerMask EnemyLayer;
     public LayerMask ProjectileLayer;
@@ -30,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int TotalEnemies;
     public int CurrentEnemies;
     private bool inMenu = true;
+    
     private bool isPaused;
     private bool stageFailed;
     private bool stageClear;
@@ -76,7 +83,7 @@ public class GameManager : MonoBehaviour
         info.transform.Find("Health").gameObject.GetComponent<Text>().rectTransform.sizeDelta = scrV;
         GameEyecatchs.Background.GetComponent<Image>().rectTransform.sizeDelta = scrV;
         GameEyecatchs.Eyecatch.GetComponent<Image>().rectTransform.sizeDelta = scrV;
-
+        help.GetComponent<Image>().rectTransform.sizeDelta = scrV;
     }
 
     public void ClearProjectiles()
@@ -411,6 +418,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextHelp()
+    {
+        if(id_nowHelp<num_help)
+        {
+            id_nowHelp++;
+            m_Fade.BackGroundControl(false);
+            string path = "Sprites/help/" + id_nowHelp.ToString();
+            help.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            inHelp = false;
+            help.gameObject.SetActive(false);
+        }
+    }
+
     private void Start()
     {
         PoolingSystem.Instance.InitializePool();
@@ -467,8 +490,25 @@ public class GameManager : MonoBehaviour
             }
 
         }
+        else if (inHelp)
+        {
+            if(id_nowHelp==0)
+            {
+                help.gameObject.SetActive(true);
+                NextHelp();
+            }
+            if (Input.GetButtonDown("Start"))
+            {
+                NextHelp();
+            }
+        }
         else if (this.inMenu)
         {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                inHelp = true;
+            }
+            
             if (Input.GetButtonDown("Quit"))
             {
                 this.QuitGame();
