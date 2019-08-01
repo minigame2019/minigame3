@@ -15,7 +15,8 @@ public class PositionShower : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<PlayerCharacter>().gameObject;
-        t = this.gameObject.AddComponent<Text>();       
+        t = this.gameObject.AddComponent<Text>();
+        
     }
 
     void Start()
@@ -31,6 +32,15 @@ public class PositionShower : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(this);
             return;
+        }
+        if (!IsOutside())
+        {
+            t.enabled = false;
+            return;
+        }
+        else
+        {
+            t.enabled = true;
         }
 
         playerPos = player.GetComponent<Transform>().position;
@@ -48,18 +58,23 @@ public class PositionShower : MonoBehaviour
         rectTransform.localPosition = direction;
         
     }
-
+    
     Vector3 ToEdge(Vector3 input)
     {
+        int width = Screen.width;
+        int height = Screen.height;
         input.y = 0;
-        Vector3 output = input.normalized * 50;
+        Vector3 output = input.normalized * 300;
         output = new Vector3(output.x, output.z, output.y);
         return output;
-
     }
 
     bool IsOutside()
     {
-        return false;
+        var position = Camera.main.WorldToViewportPoint(target.transform.position);
+        if (position.x > 0 && position.x < 1 && position.y > 0 && position.y < 1)
+            return false;
+        else
+            return true;
     }
 }
