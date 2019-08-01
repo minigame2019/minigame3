@@ -410,6 +410,8 @@ MonoBehaviour:
     amount: 10
   - prefab: {fileID: 1642941983000230, guid: 0aac3b7a205d3b9f448a05d17a1a4e9a, type: 3}
     amount: 10
+  - prefab: {fileID: 1670653872454030, guid: 39075cd9f242239445f8c61582e8b636, type: 3}
+    amount: 10
   defaultPoolAmount: 10
   poolExpand: 1
 --- !u!4 &226338895
@@ -826,6 +828,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -897,6 +900,102 @@ Transform:
   m_Father: {fileID: 228396930}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &534669906
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ad0bc62b70b588945affe92df84c0e9e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &548221641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,12 +1585,13 @@ MonoBehaviour:
       type: 3}
     DestructableWall: {fileID: 4937040170366292383, guid: 8d81268d2964fff4996d6f112247f0b9,
       type: 3}
-    TempAudio: {fileID: 0}
+    TempAudio: {fileID: 1670653872454030, guid: 39075cd9f242239445f8c61582e8b636,
+      type: 3}
   GameSounds:
-    Shoot: {fileID: 0}
-    Hit: {fileID: 0}
-    Explode: {fileID: 0}
-    Armor: {fileID: 0}
+    Shoot: {fileID: 8300000, guid: 55fb815b12cbe88d42b28fb302dcb0d9, type: 3}
+    Hit: {fileID: 8300000, guid: 8062b35effd308be47196ab8b6006fa7, type: 3}
+    Explode: {fileID: 8300000, guid: 386810d95c314e834aa7f8dd12b1f2a4, type: 3}
+    Armor: {fileID: 8300000, guid: e6f64d197bba629b41a0e5ac6bd9f19d, type: 3}
   GameEyecatchs:
     Background: {fileID: 1360796944}
     Eyecatch: {fileID: 84889881}
@@ -1565,40 +1665,40 @@ MonoBehaviour:
   useRandomSeed: 1
   randomFillPercent: 24
   Waves:
-  - BasicEnemy: 2
-    ArmorEnemy: 1
-    PillarEnemy: 1
-    ArmorPillarEnemy: 1
-    AbsorberEnemy: 1
-    Hunter: 1
-    Switch: 1
-  - BasicEnemy: 2
-    ArmorEnemy: 2
-    PillarEnemy: 3
-    ArmorPillarEnemy: 3
-    AbsorberEnemy: 3
-    Hunter: 4
-    Switch: 1
-  - BasicEnemy: 20
+  - BasicEnemy: 6
     ArmorEnemy: 0
     PillarEnemy: 0
     ArmorPillarEnemy: 0
-    AbsorberEnemy: 20
-    Hunter: 0
-    Switch: 5
+    AbsorberEnemy: 0
+    Hunter: 2
+    Switch: 1
   - BasicEnemy: 4
     ArmorEnemy: 4
-    PillarEnemy: 5
-    ArmorPillarEnemy: 5
-    AbsorberEnemy: 6
-    Hunter: 4
+    PillarEnemy: 0
+    ArmorPillarEnemy: 0
+    AbsorberEnemy: 0
+    Hunter: 2
     Switch: 1
+  - BasicEnemy: 8
+    ArmorEnemy: 8
+    PillarEnemy: 0
+    ArmorPillarEnemy: 0
+    AbsorberEnemy: 6
+    Hunter: 0
+    Switch: 3
   - BasicEnemy: 0
     ArmorEnemy: 0
     PillarEnemy: 0
     ArmorPillarEnemy: 0
     AbsorberEnemy: 0
-    Hunter: 30
+    Hunter: 20
+    Switch: 1
+  - BasicEnemy: 0
+    ArmorEnemy: 0
+    PillarEnemy: 8
+    ArmorPillarEnemy: 8
+    AbsorberEnemy: 0
+    Hunter: 0
     Switch: 1
   - BasicEnemy: 4
     ArmorEnemy: 4
@@ -1606,14 +1706,14 @@ MonoBehaviour:
     ArmorPillarEnemy: 4
     AbsorberEnemy: 4
     Hunter: 4
-    Switch: 1
-  - BasicEnemy: 0
-    ArmorEnemy: 0
-    PillarEnemy: 0
-    ArmorPillarEnemy: 0
-    AbsorberEnemy: 0
-    Hunter: 0
-    Switch: 1
+    Switch: 2
+  - BasicEnemy: 6
+    ArmorEnemy: 6
+    PillarEnemy: 6
+    ArmorPillarEnemy: 6
+    AbsorberEnemy: 6
+    Hunter: 6
+    Switch: 3
 --- !u!1 &1179005386
 GameObject:
   m_ObjectHideFlags: 0

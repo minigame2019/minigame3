@@ -30,7 +30,7 @@ public class EnemyPillar : EnemyCharacter
                     flag = !flag;
                 }
             }
-            GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+            //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
         }
     }
 

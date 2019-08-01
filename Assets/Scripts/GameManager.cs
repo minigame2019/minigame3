@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayAudio(Vector3 position, AudioClip clip, float time = -1f)
     {
-        //PoolingSystem.Instance.InstantiateAPS("TempAudio", position, Quaternion.identity).GetComponent<TempAudio>().SetAudio(clip, (time <= 0f) ? clip.length : time);
+       PoolingSystem.Instance.InstantiateAPS("TempAudio", position, Quaternion.identity).GetComponent<TempAudio>().SetAudio(clip, (time <= 0f) ? clip.length : time);
     }
 
     private void QuitGame()
