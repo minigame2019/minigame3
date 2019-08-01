@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class DestructableWall : MonoBehaviour, IDamageable<Transform>
+public class DestructableWall : MonoBehaviour, IDamageable<Transform>, IMChangeable
 {
     public int Health = 5;
     private Material[] displayMaterials = new Material[0];
@@ -37,6 +37,21 @@ public class DestructableWall : MonoBehaviour, IDamageable<Transform>
             //CameraController.Shake(0.1f);
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Explode, -1f);
             Destroy(base.gameObject);
+        }
+    }
+
+    public void SwitchMaterialToNight(bool isEnteringNight)
+    {
+        foreach (var part in GetComponentsInChildren<MeshRenderer>())
+        {
+            if (isEnteringNight)
+            {
+                part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/CubeLava");
+            }
+            else
+            {
+                part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/CubeIce");
+            }
         }
     }
 }

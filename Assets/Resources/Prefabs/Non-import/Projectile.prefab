@@ -120,8 +120,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01, y: 0.01, z: 0.002}
-  m_Center: {x: 0, y: 0, z: 0.004}
+  m_Size: {x: 0.017908728, y: 0.20100912, z: 0.004176987}
+  m_Center: {x: -0.00037892736, y: -0.003753662, z: 0.0029115074}
 --- !u!1 &8954191479963731303
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 15
   CanBeDestroyed: 1
-  Radius: 0.3
+  Radius: 0.1
   Distance: 100
   CollisionLayers:
     serializedVersion: 2
