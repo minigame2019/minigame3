@@ -10,7 +10,7 @@ Material:
   m_Name: CubeLava
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 2
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8679245, g: 0.10103556, b: 0.09416164, a: 1}
-    - _EmissionColor: {r: 0.6603774, g: 0.136663, b: 0.046724807, a: 1}
+    - _Color: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
+    - _EmissionColor: {r: 0.9622642, g: 0.10327595, b: 0.040850822, a: 1}

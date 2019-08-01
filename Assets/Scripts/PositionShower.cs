@@ -32,6 +32,7 @@ public class PositionShower : MonoBehaviour
             Destroy(this);
             return;
         }
+
         playerPos = player.GetComponent<Transform>().position;
         targetPos = target.GetComponent<Transform>().position;
 
