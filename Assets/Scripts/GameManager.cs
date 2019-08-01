@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     //CG Setting
     public Image startCg;
     public int id_nowCg = 0;
+    public int id_nowEyecatch = 0;
     private int num_startCg = 5;
     public bool isStartCG = false;
 
@@ -72,6 +73,9 @@ public class GameManager : MonoBehaviour
         GameMenus.MainMenu.transform.Find("Background").gameObject.GetComponent<Image>().rectTransform.sizeDelta = scrV;
         GameObject.Find("/Canvas/Text").GetComponent<Text>().rectTransform.sizeDelta = scrV;
         info.transform.Find("Health").gameObject.GetComponent<Text>().rectTransform.sizeDelta = scrV;
+        GameEyecatchs.Background.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+        GameEyecatchs.Eyecatch.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+
     }
 
     public void ClearProjectiles()
@@ -237,18 +241,36 @@ public class GameManager : MonoBehaviour
         this.StageCleared();
     }
 
-    public void ShowEyecatch(bool b = true)
+    public void SetEyecatchActive(bool b = true)
     {
         GameEyecatchs.Background.SetActive(b);
+        GameEyecatchs.Eyecatch.SetActive(b);
+    }
+
+    public void NextEyecatch()
+    {
+        int num = 0;
         switch (CurrentLevel)
         {
             case 2:
-                GameEyecatchs.Eyecatch1.SetActive(b);
+                num = GameEyecatchs.num2;
                 break;
             default:
                 break;
         }
-        eyecatchShowing = b;    
+        if (id_nowEyecatch < num)
+        {
+            id_nowEyecatch++;
+            m_Fade.BackGroundControl(false);
+            string path = "Sprites/"+ CurrentLevel.ToString() +"/" + id_nowEyecatch.ToString();
+            GameEyecatchs.Eyecatch.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            SetEyecatchActive(false);
+            isEyecatching = false;
+            Restart();
+        }
     }
 
     public void Restart()
@@ -353,6 +375,11 @@ public class GameManager : MonoBehaviour
             string path = "Sprites/startCG/" + id_nowCg.ToString();
             startCg.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         }
+        else
+        {
+            isStartCG = false;
+            startCg.gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -385,29 +412,22 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetButtonDown("Start"))
             {
-                if(id_nowCg<num_startCg)
-                {
-                    NextCG();
-                }
-                else
-                {
-                    isStartCG = false;
-                    startCg.gameObject.SetActive(false);
-                }
+                NextCG();
             }
         }
         else if (isEyecatching)
         {
-            if (!eyecatchShowing)
+            if (id_nowEyecatch == 0)
             {
-                m_Fade.BackGroundControl(false);
-                ShowEyecatch(true);
+                SetEyecatchActive(true);
+                NextEyecatch();
             }
             if (Input.GetButtonDown("Start"))
             {
-                ShowEyecatch(false);
-                isEyecatching = false;
-                this.Restart();
+                NextEyecatch();
+                //SetEyecatchActive(false);
+                //isEyecatching = false;
+                //this.Restart();
             }
 
         }
@@ -511,7 +531,15 @@ public class GameManager : MonoBehaviour
     public class Eyecatchs
     {
         public GameObject Background;
-        public GameObject Eyecatch1;
+        public GameObject Eyecatch;
+
+        //第x关前的图片数量
+        public int num2 =2;
+        public int num3=2;
+        public int num4=2;
+        public int num5 = 2;
+        public int num6 = 2;
+        public int num7 = 2;
     }
 
 
