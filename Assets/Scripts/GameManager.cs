@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
         IsSwitchShowed = false;
         this.MapGenerator = base.GetComponent<NewMapGenerator>();
         startCg.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+        Debug.Log(GameMenus.MainMenu.transform.Find("Background").gameObject);
+        GameMenus.MainMenu.transform.Find("Background").gameObject.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
         info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
     }
 
