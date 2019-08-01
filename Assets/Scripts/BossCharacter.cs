@@ -126,16 +126,16 @@ public class BossCharacter : EnemyCharacter
         base.CurrentCooldown = base.Cooldown;
 
         //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
-        /*
-        PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
-        GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
-        this.currentProjectile++;
+        
+        //PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
+        //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+        /*this.currentProjectile++;
         if (this.currentProjectile >= 3)
         {
             this.primaryProjectile = !this.primaryProjectile;
             this.currentProjectile = 0;
-        }
-        */
+        }*/
+        
     }
     
 

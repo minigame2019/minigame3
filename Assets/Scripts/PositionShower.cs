@@ -8,58 +8,95 @@ public class PositionShower : MonoBehaviour
     public Vector3 targetPos;
     public GameObject player;
     public GameObject target;
-    Sprite sprite;
+    public Image image;
     // Start is called before the first frame update
-    Text t;
-
-    private void Awake()
+    RectTransform rectTransform;
+    public void SetColor(Color color)
     {
-        player = FindObjectOfType<PlayerCharacter>().gameObject;
-        t = this.gameObject.AddComponent<Text>();       
+        image.color = color;
     }
-
+    private void Awake()
+    {       
+        player = FindObjectOfType<PlayerCharacter>().gameObject;
+        rectTransform = this.transform.GetComponent<RectTransform>();
+        rectTransform.localScale = new Vector2((float)0.5, (float)0.5);
+    }
     void Start()
     {
         
     }
-    bool flag = false;
     // Update is called once per frame
     void Update()
     {
         if (this.target == null || this.player == null)
         {
+            Destroy(this.image);
             Destroy(this.gameObject);
             Destroy(this);
             return;
         }
-
+        if (!IsOutside())
+        {
+            image.enabled = false;
+            return;
+        }
+        else
+        {
+            image.enabled = true;
+        }
+        
         playerPos = player.GetComponent<Transform>().position;
         targetPos = target.GetComponent<Transform>().position;
 
-        t.text = "text";
-        t.font = PositionShowerManager.Instance.font;
-
-        
-        RectTransform rectTransform = transform.GetComponent<RectTransform>();
         Vector3 direction = (targetPos - playerPos);
         direction = ToEdge(direction);
-        rectTransform.sizeDelta = new Vector2(14, 16);
-        
         rectTransform.localPosition = direction;
-        
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        rectTransform.localRotation = Quaternion.AngleAxis(angle,Vector3.forward);
     }
-
+    
     Vector3 ToEdge(Vector3 input)
     {
+        float width = (float)Screen.width;
+        float height = (float)Screen.height;
         input.y = 0;
-        Vector3 output = input.normalized * 50;
-        output = new Vector3(output.x, output.z, output.y);
-        return output;
+        Vector3 output = new Vector3(input.x, input.z,0);
+        output.Normalize();
 
+        if (Mathf.Abs(output.x) < 0.01f)
+        {
+            output = output * height / 2 / Mathf.Abs(output.y);
+        }
+        else
+        {
+            if (Mathf.Abs(output.y) < 0.01f)
+            {
+                output = output * width / 2 / Mathf.Abs(output.x);
+            }
+            else
+            {
+                if (Mathf.Abs(output.y / output.x) > height / width)
+                {
+                    output = output * height / 2 / Mathf.Abs(output.y);
+                }
+                else
+                {
+                    output = output * width / 2 / Mathf.Abs(output.x);
+                }
+            }
+        }
+        float l = 20;
+        output = (output.magnitude - l) * output.normalized;
+        return output;
+        
     }
 
     bool IsOutside()
     {
-        return false;
+        var position = Camera.main.WorldToViewportPoint(target.transform.position);
+        if (position.x > 0 && position.x < 1 && position.y > 0 && position.y < 1)
+            return false;
+        else
+            return true;
     }
 }

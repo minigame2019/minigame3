@@ -19,8 +19,15 @@ public class GameManager : MonoBehaviour
     //CG Setting
     public Image startCg;
     public int id_nowCg = 0;
+    public int id_nowEyecatch = 0;
     private int num_startCg = 5;
     public bool isStartCG = false;
+
+    //Help
+    public GameObject help;
+    public int id_nowHelp = 0;
+    public int num_help = 1;
+    private bool inHelp = false;
 
     public LayerMask CharacterLayer;
     public LayerMask EnemyLayer;
@@ -29,6 +36,7 @@ public class GameManager : MonoBehaviour
     public int TotalEnemies;
     public int CurrentEnemies;
     private bool inMenu = true;
+    
     private bool isPaused;
     private bool stageFailed;
     private bool stageClear;
@@ -41,7 +49,7 @@ public class GameManager : MonoBehaviour
     private HelpMessageStats helpMessageStats;
 
     public bool isAtNight;
-
+    public bool isCheating = true;
     public bool bossExist = false;
     public bool bossIsAlive = false;
 
@@ -70,8 +78,12 @@ public class GameManager : MonoBehaviour
         Vector2 scrV = new Vector2(Screen.width, Screen.height);
         startCg.rectTransform.sizeDelta = scrV;
         GameMenus.MainMenu.transform.Find("Background").gameObject.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+        GameMenus.BackBar.GetComponent<Image>().rectTransform.sizeDelta = scrV;
         GameObject.Find("/Canvas/Text").GetComponent<Text>().rectTransform.sizeDelta = scrV;
         info.transform.Find("Health").gameObject.GetComponent<Text>().rectTransform.sizeDelta = scrV;
+        GameEyecatchs.Background.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+        GameEyecatchs.Eyecatch.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+        help.GetComponent<Image>().rectTransform.sizeDelta = scrV;
     }
 
     public void ClearProjectiles()
@@ -195,7 +207,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayAudio(Vector3 position, AudioClip clip, float time = -1f)
     {
-        //PoolingSystem.Instance.InstantiateAPS("TempAudio", position, Quaternion.identity).GetComponent<TempAudio>().SetAudio(clip, (time <= 0f) ? clip.length : time);
+       PoolingSystem.Instance.InstantiateAPS("TempAudio", position, Quaternion.identity).GetComponent<TempAudio>().SetAudio(clip, (time <= 0f) ? clip.length : time);
     }
 
     private void QuitGame()
@@ -235,18 +247,64 @@ public class GameManager : MonoBehaviour
         this.StageCleared();
     }
 
-    public void ShowEyecatch(bool b = true)
+    public void SetEyecatchActive(bool b = true)
     {
         GameEyecatchs.Background.SetActive(b);
+        GameEyecatchs.Eyecatch.SetActive(b);
+    }
+
+    public void NextEyecatch()
+    {
+        int num = 0;
         switch (CurrentLevel)
         {
             case 2:
-                GameEyecatchs.Eyecatch1.SetActive(b);
+                num = GameEyecatchs.num2;
+                break;
+            case 3:
+                num = GameEyecatchs.num3;
+                break;
+            case 4:
+                num = GameEyecatchs.num4;
+                break;
+            case 5:
+                num = GameEyecatchs.num5;
+                break;
+            case 6:
+                num = GameEyecatchs.num6;
+                break;
+            case 7:
+                num = GameEyecatchs.num7;
+                break;
+            case 8:
+                num = GameEyecatchs.num8;
                 break;
             default:
                 break;
         }
-        eyecatchShowing = b;    
+        if (id_nowEyecatch < num)
+        {
+            id_nowEyecatch++;
+            m_Fade.BackGroundControl(false);
+            string path = "Sprites/"+ CurrentLevel.ToString() +"/" + id_nowEyecatch.ToString();
+            GameEyecatchs.Eyecatch.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            id_nowEyecatch = 0;
+            SetEyecatchActive(false);
+            isEyecatching = false;
+            if(CurrentLevel<8)
+            {
+                Restart();
+            }
+            else
+            {
+                CurrentLevel = 1;
+                stageFailed = true;
+                ReturnToMenu();
+            }
+        }
     }
 
     public void Restart()
@@ -351,6 +409,28 @@ public class GameManager : MonoBehaviour
             string path = "Sprites/startCG/" + id_nowCg.ToString();
             startCg.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         }
+        else
+        {
+            isStartCG = false;
+            startCg.gameObject.SetActive(false);
+        }
+    }
+
+    public void NextHelp()
+    {
+        if(id_nowHelp<num_help)
+        {
+            id_nowHelp++;
+            m_Fade.BackGroundControl(false);
+            string path = "Sprites/help/" + id_nowHelp.ToString();
+            help.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+            id_nowHelp = 0;
+            inHelp = false;
+            help.gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -374,6 +454,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isCheating)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                StageCleared();
+            }
+        }
         if (isStartCG)
         {
             if (id_nowCg == 0) 
@@ -383,34 +470,44 @@ public class GameManager : MonoBehaviour
             }
             if (Input.GetButtonDown("Start"))
             {
-                if(id_nowCg<num_startCg)
-                {
-                    NextCG();
-                }
-                else
-                {
-                    isStartCG = false;
-                    startCg.gameObject.SetActive(false);
-                }
+                NextCG();
             }
         }
         else if (isEyecatching)
         {
-            if (!eyecatchShowing)
+            if (id_nowEyecatch == 0)
             {
-                m_Fade.BackGroundControl(false);
-                ShowEyecatch(true);
+                SetEyecatchActive(true);
+                NextEyecatch();
             }
             if (Input.GetButtonDown("Start"))
             {
-                ShowEyecatch(false);
-                isEyecatching = false;
-                this.Restart();
+                NextEyecatch();
+                //SetEyecatchActive(false);
+                //isEyecatching = false;
+                //this.Restart();
             }
 
         }
+        else if (inHelp)
+        {
+            if(id_nowHelp==0)
+            {
+                help.gameObject.SetActive(true);
+                NextHelp();
+            }
+            if (Input.GetButtonDown("Start"))
+            {
+                NextHelp();
+            }
+        }
         else if (this.inMenu)
         {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                inHelp = true;
+            }
+            
             if (Input.GetButtonDown("Quit"))
             {
                 this.QuitGame();
@@ -509,7 +606,16 @@ public class GameManager : MonoBehaviour
     public class Eyecatchs
     {
         public GameObject Background;
-        public GameObject Eyecatch1;
+        public GameObject Eyecatch;
+
+        //第x关前的图片数量
+        public int num2 = 2;
+        public int num3 = 2;
+        public int num4 = 2;
+        public int num5 = 2;
+        public int num6 = 1;
+        public int num7 = 2;
+        public int num8 = 1;
     }
 
 

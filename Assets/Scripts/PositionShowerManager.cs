@@ -15,19 +15,20 @@ public class PositionShowerManager : MonoSingleton<PositionShowerManager>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log(Input.mousePosition);
-        }
         
     }
 
-    public PositionShower CreatePositionShower()
+    public PositionShower CreatePositionShower(Sprite sprite)
     {
-        GameObject obj = Instantiate(new GameObject());
-        obj.transform.parent = this.transform;
+        GameObject obj = Instantiate(new GameObject(),this.transform);
+        
+        Image image = obj.AddComponent<Image>();
+        image.sprite = sprite;
+
         PositionShower positionShower = obj.AddComponent<PositionShower>();
         this.positionShowers.Add(positionShower);
+        positionShower.image = image; 
+        
         return positionShower;
     }
 

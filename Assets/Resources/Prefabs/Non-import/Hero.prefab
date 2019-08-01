@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3287600606345267784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 6878391490907461223}
   m_Father: {fileID: 6878391490907461217}
@@ -96,7 +96,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 4011884809145670680}
   CharacterMesh: {fileID: 4649638342404439501}
   Stats:
-    Health: 6
+    Health: 500
     MoveSpeed: 8
     TurnSpeed: 10
     AttackRange: 100
@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6878391490907490887}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children: []
   m_Father: {fileID: 4649638342404439501}
