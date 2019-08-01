@@ -11,6 +11,8 @@ public class CharacterBase : MonoBehaviour, IDamageable<Transform>, IKillable, I
     protected Vector3 MovementInput;
     protected Vector3 LookInput;
 
+    public bool canMove = true;
+
     public virtual void CooldownTimers()
     {
     }

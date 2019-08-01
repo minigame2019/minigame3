@@ -37,6 +37,17 @@ public class PlayerController : MonoBehaviour
         // Create a RaycastHit variable to store information about what was hit by the ray.
         RaycastHit floorHit;
 
+        if(!Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
+        {
+            //Debug.Log(2);
+            this.character.canMove = false;
+        }
+        else
+        {
+            //Debug.Log(1);
+            this.character.canMove = true;
+        }
+
         // Perform the raycast and if it hits something on the floor layer...
         if (Physics.Raycast(camRay, out floorHit, 1000, 1 << 12))
         {

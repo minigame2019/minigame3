@@ -162,7 +162,7 @@ MonoBehaviour:
   Distance: 30
   CollisionLayers:
     serializedVersion: 2
-    m_Bits: 51712
+    m_Bits: 49664
   CanBoom: 0
   HaveBoomed: 0
   BoomDistance: 0

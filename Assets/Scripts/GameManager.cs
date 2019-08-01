@@ -211,8 +211,6 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemy()
     {
         this.CurrentEnemies--;
-        Debug.Log(this.bossExist);
-        Debug.Log(this.bossIsAlive);
         if(this.bossExist)
         {
             if (!this.bossIsAlive)
@@ -233,7 +231,7 @@ public class GameManager : MonoBehaviour
 
     private void WaveOver()
     {
-        PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);
+        //PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);
         this.StageCleared();
     }
 

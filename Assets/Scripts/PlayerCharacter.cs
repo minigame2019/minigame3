@@ -7,6 +7,7 @@ public class PlayerCharacter : CharacterBase
     //public GameObject HealthPiece2;
     //public GameObject HealthPiece3;
     public PlayerInfo info;
+
     public override void CooldownTimers()
     {
         if (base.CurrentCooldown > 0f)
@@ -24,7 +25,17 @@ public class PlayerCharacter : CharacterBase
 
     public override void Movement()
     {
-        base.Rigidbody.velocity = Vector3.Lerp(base.Rigidbody.velocity, base.MovementInput * base.Stats.MoveSpeed, Time.fixedDeltaTime * 15f);
+        if (!this.canMove)
+        {
+            base.Rigidbody.isKinematic = true;
+        }
+        else
+        {
+            
+            base.Rigidbody.isKinematic = false;
+        }
+
+         base.Rigidbody.velocity = Vector3.Lerp(base.Rigidbody.velocity, base.MovementInput * base.Stats.MoveSpeed, Time.fixedDeltaTime * 15f);
         // Create a quaternion (rotation) based on looking down the vector from the player to the mouse.
         if (!LookInput.Equals(Vector3.zero))
         {

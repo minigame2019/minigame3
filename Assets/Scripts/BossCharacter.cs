@@ -70,7 +70,6 @@ public class BossCharacter : EnemyCharacter
                         new Danmaku().RoundDanmaku(defaultProjectile, position, direction, 15);
                             break;
                     default:
-                        PoolingSystem.Instance.InstantiateAPS(defaultProjectile, position, rotation);
                         break;
                 }
                 break;
@@ -78,12 +77,9 @@ public class BossCharacter : EnemyCharacter
                 switch (lastAttackWay)
                 {
                     case 0:
-                        for(int i = 0; i < 3; i++)
-                        {
-                            PoolingSystem.Instance.InstantiateAPS(boomerProjuctile, position, rotation);
-                        }
+                        PoolingSystem.Instance.InstantiateAPS(boomerProjuctile, position, rotation);
                         break;
-                    case 30:
+                    //case 30:
                     case 90:
                         new Danmaku().GrapeshotDanmaku(defaultProjectile, position, direction, 10, 2);
                         break;
@@ -107,20 +103,11 @@ public class BossCharacter : EnemyCharacter
                 switch (lastAttackWay)
                 {
                     case 0:
-                    case 15:
-                    case 30:
-                    case 45:
                     case 60:
-                    case 75:
-                    case 90:
                         new Danmaku().RoundDanmaku(boomerProjuctile, position, direction, 45);
                         break;
                     case 10:
-                    case 20:
-                    case 40:
-                    case 50:
                     case 70:
-                    case 80:
                         new Danmaku().RoundDanmaku(defaultProjectile, position, direction, 15);
                         break;
                     default:
@@ -162,14 +149,17 @@ public class BossCharacter : EnemyCharacter
 
         switch (GameManager.Instance.CurrentLevel)
         {
-            case 4:
+            case 2:
                 base.Stats.Health = 30;
                 break;
+            case 4:
+                base.Stats.Health = 20;
+                break;
             case 6:
-                base.Stats.Health = 60;
+                base.Stats.Health = 15;
                 break;
             case 7:
-                base.Stats.Health = 100;
+                base.Stats.Health = 50;
                 break;
             default:
                 break;
