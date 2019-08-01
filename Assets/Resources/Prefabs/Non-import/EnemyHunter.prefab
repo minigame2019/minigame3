@@ -120,8 +120,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0042162524, y: 0.002, z: 0.0074136676}
-  m_Center: {x: 0, y: 0, z: 0.0037068343}
+  m_Size: {x: 0.0042162524, y: 0.0136964535, z: 0.007413667}
+  m_Center: {x: 0, y: 0.0005029756, z: 0.0037068343}
 --- !u!1 &6749269324053733995
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,11 +188,12 @@ MonoBehaviour:
   CharacterMesh: {fileID: 5390393460321582124}
   Stats:
     Health: 2
-    MoveSpeed: 10
+    MoveSpeed: 8
     TurnSpeed: 8
     AttackRange: 40
   Cooldown: 1
   Armor: {fileID: 0}
+  isBoss: 0
   Jour:
   - {fileID: 6749269324054036041}
   Nuit:
