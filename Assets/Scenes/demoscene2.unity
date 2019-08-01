@@ -1754,16 +1754,16 @@ MonoBehaviour:
     PillarEnemy: 0
     ArmorPillarEnemy: 0
     AbsorberEnemy: 0
-    Hunter: 15
+    Hunter: 30
     Switch: 1
   - BasicEnemy: 5
     ArmorEnemy: 2
     PillarEnemy: 2
     ArmorPillarEnemy: 2
     AbsorberEnemy: 2
-    Hunter: 2
+    Hunter: 0
     Switch: 2
-  - BasicEnemy: 0
+  - BasicEnemy: 1
     ArmorEnemy: 0
     PillarEnemy: 0
     ArmorPillarEnemy: 0
