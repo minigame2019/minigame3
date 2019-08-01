@@ -456,7 +456,7 @@ public class GameManager : MonoBehaviour
     {
         if (isCheating)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 StageCleared();
             }

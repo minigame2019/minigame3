@@ -17,7 +17,7 @@ public class NormalWall : MonoBehaviour, IMChangeable
             }
             else
             {
-                part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/White");
+                part.GetComponent<Renderer>().material = Resources.Load<Material>("Materials/White Wall");
             }
         }
     }
