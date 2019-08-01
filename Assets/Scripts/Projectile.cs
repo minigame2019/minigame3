@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour, IDamageable<Transform>, IKillable, IMCh
     {
         if(CanBoom && !HaveBoomed && this.currentDistance >= this.BoomDistance)
         {
-            new Danmaku().RoundDanmaku("EnemyProjectile", this.transform.position, this.transform.rotation.eulerAngles, 20);
+            new Danmaku().RoundDanmaku("EnemyProjectilePurple", this.transform.position, this.transform.rotation.eulerAngles, 20);
             HaveBoomed = true;
         }
     }

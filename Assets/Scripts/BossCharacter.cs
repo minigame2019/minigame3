@@ -7,8 +7,30 @@ public class BossCharacter : EnemyCharacter
     private int currentProjectile;
     private int lastAttackWay = 0;
 
+    private string defaultProjectile = "EnemyProjectilePurple";
+    private string boomerProjuctile = "EnemyProjectileBoomer";
+
     public void CheckEnemyCount()
     {
+        switch (GameManager.Instance.CurrentLevel)
+        {
+            case 2:
+                if(GameManager.Instance.CurrentEnemies == 0)
+                {
+                    base.gameObject.SetActive(true);
+                }
+                break;
+            case 4:
+                if(GameManager.Instance.CurrentEnemies == 1)
+                {
+                    base.Armor.gameObject.SetActive(false);
+                }
+                break;
+            default:
+                break;
+        }
+
+        /*
         if (GameManager.Instance.CurrentEnemies == 1)
         {
             base.Armor.gameObject.SetActive(false);
@@ -21,54 +43,136 @@ public class BossCharacter : EnemyCharacter
         {
             base.Cooldown = 0.5f;
         }
+        */
     }
 
     public override void Kill()
     {
+        GameManager.Instance.bossIsAlive = false;
         base.Kill();
-        PoolingSystem.Instance.InstantiateAPS("PlayerExplode", base.transform.position, Quaternion.identity);
     }
 
     public override void PrimaryAttack()
     {
-        if (base.CurrentCooldown <= 0f)
+        Vector3 position = base.CharacterMesh.position;
+        Quaternion rotation = base.CharacterMesh.rotation;
+        Vector3 direction = rotation.eulerAngles;
+
+        switch (GameManager.Instance.CurrentLevel)
         {
-            switch(lastAttackWay)
-            {
-                case 0:
-                    new Danmaku().RoundDanmaku("EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 20);
-                    break;
-                case 1:
-                    new Danmaku().RoundDanmaku("EnemyProjectilePurple", base.CharacterMesh.position, base.CharacterMesh.rotation.eulerAngles, 30);
-                    break;
-                default:
-                    PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
-                    GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
-                    this.currentProjectile++;
-                    if (this.currentProjectile >= 3)
-                    {
-                        this.primaryProjectile = !this.primaryProjectile;
-                        this.currentProjectile = 0;
-                    }
+            case 2:
+                switch (lastAttackWay)
+                {
+                    case 0:
+                    case 30:
+                    case 60:
+                    case 90:
+                        new Danmaku().RoundDanmaku(defaultProjectile, position, direction, 15);
+                            break;
+                    default:
+                        PoolingSystem.Instance.InstantiateAPS(defaultProjectile, position, rotation);
+                        break;
+                }
                 break;
-                
-            }
-            lastAttackWay++;
-            if (lastAttackWay>4)
-            {
-                lastAttackWay = 0;
-            }
-            base.CurrentCooldown = base.Cooldown;
-            /*
-            PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
-            GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
-            this.currentProjectile++;
-            if (this.currentProjectile >= 3)
-            {
-                this.primaryProjectile = !this.primaryProjectile;
-                this.currentProjectile = 0;
-            }
-            */
+            case 4:
+                switch (lastAttackWay)
+                {
+                    case 0:
+                        for(int i = 0; i < 3; i++)
+                        {
+                            PoolingSystem.Instance.InstantiateAPS(boomerProjuctile, position, rotation);
+                        }
+                        break;
+                    case 30:
+                    case 90:
+                        new Danmaku().GrapeshotDanmaku(defaultProjectile, position, direction, 10, 2);
+                        break;
+                    default:
+                        break;
+                        
+                }
+                break;
+            case 6:
+                switch (lastAttackWay)
+                {
+                    case 0:
+                    case 60:
+                        new Danmaku().RoundDanmaku(defaultProjectile, position, direction, 18);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 7:
+                switch (lastAttackWay)
+                {
+                    case 0:
+                    case 15:
+                    case 30:
+                    case 45:
+                    case 60:
+                    case 75:
+                    case 90:
+                        new Danmaku().RoundDanmaku(boomerProjuctile, position, direction, 45);
+                        break;
+                    case 10:
+                    case 20:
+                    case 40:
+                    case 50:
+                    case 70:
+                    case 80:
+                        new Danmaku().RoundDanmaku(defaultProjectile, position, direction, 15);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+
+        lastAttackWay++;
+        if(lastAttackWay >= 120)
+        {
+            lastAttackWay = 0;
+        }
+        base.CurrentCooldown = base.Cooldown;
+
+        //GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+        /*
+        PoolingSystem.Instance.InstantiateAPS(!this.primaryProjectile ? "EnemyProjectilePurple" : "EnemyProjectile", base.CharacterMesh.position, base.CharacterMesh.rotation);
+        GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Shoot, -1f);
+        this.currentProjectile++;
+        if (this.currentProjectile >= 3)
+        {
+            this.primaryProjectile = !this.primaryProjectile;
+            this.currentProjectile = 0;
+        }
+        */
+    }
+    
+
+    public override void VStart()
+    {
+        base.VStart();
+        if(GameManager.Instance.CurrentLevel != 4)
+        {
+            base.Armor.gameObject.SetActive(false);
+        }
+
+        switch (GameManager.Instance.CurrentLevel)
+        {
+            case 4:
+                base.Stats.Health = 30;
+                break;
+            case 6:
+                base.Stats.Health = 60;
+                break;
+            case 7:
+                base.Stats.Health = 100;
+                break;
+            default:
+                break;
         }
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyCharacter : CharacterBase
 {
     public Transform Armor;
+    public bool isBoss;
 
     public Transform[] Jour;  // white part, can be destroyed at night
     public Transform[] Nuit;  // black part, can be destroyed at daytime
@@ -67,6 +68,11 @@ public class EnemyCharacter : CharacterBase
 
     public override void TakeDamage(Transform hitObject)
     {
+        if(GameManager.Instance.CurrentLevel == 6 && !this.isBoss)
+        {
+            return;
+        }
+
         if (hitObject == this.Armor)
         {
             GameManager.Instance.PlayAudio(base.transform.position, GameManager.Instance.GameSounds.Armor, -1f);
