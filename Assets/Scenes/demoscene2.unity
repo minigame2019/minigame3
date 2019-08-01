@@ -1499,7 +1499,7 @@ MonoBehaviour:
     num3: 2
     num4: 2
     num5: 2
-    num6: 2
+    num6: 1
     num7: 2
   startCg: {fileID: 1505597042}
   id_nowCg: 0
