@@ -64,8 +64,15 @@ public class GameManager : MonoBehaviour
         isAtNight = false;
         IsSwitchShowed = false;
         this.MapGenerator = base.GetComponent<NewMapGenerator>();
-        startCg.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+        //Image mainMenuBG = GameMenus.MainMenu.transform.Find("background").gameObject
         info = GameObject.Find("/Canvas/PlayerInfo").GetComponent<PlayerInfo>();
+
+        Vector2 scrV = new Vector2(Screen.width, Screen.height);
+        startCg.rectTransform.sizeDelta = scrV;
+        GameMenus.MainMenu.transform.Find("Background").gameObject.GetComponent<Image>().rectTransform.sizeDelta = scrV;
+        GameObject.Find("/Canvas/Text").GetComponent<Text>().rectTransform.sizeDelta = scrV;
+        info.transform.Find("Health").gameObject.GetComponent<Text>().rectTransform.sizeDelta = scrV;
+
     }
 
     public void ClearProjectiles()

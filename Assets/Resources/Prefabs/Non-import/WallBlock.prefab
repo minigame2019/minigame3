@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 5847497255358117572}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.3, z: 1}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children:
   - {fileID: 223880168194192925}
   m_Father: {fileID: 5847497255358474978}
@@ -132,6 +132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5847497255358474980}
     m_Modifications:
+    - target: {fileID: 135122, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
+      propertyPath: m_Name
+      value: Cube Metal
+      objectReference: {fileID: 0}
+    - target: {fileID: 135122, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 486326, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -179,14 +187,6 @@ PrefabInstance:
     - target: {fileID: 486326, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.7692308
-      objectReference: {fileID: 0}
-    - target: {fileID: 135122, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
-      propertyPath: m_Name
-      value: Cube Metal
-      objectReference: {fileID: 0}
-    - target: {fileID: 135122, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
-      propertyPath: m_Layer
-      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2335866, guid: e6371eabd02698844b264c76f4df32d5, type: 3}
       propertyPath: m_Materials.Array.data[0]

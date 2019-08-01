@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour
     public GameObject player;
     public void Renew()
     {
-        player = GameObject.Find("/LevelContainer/Player(Clone)");
+        player = GameObject.Find("/LevelContainer/Hero(Clone)");
         if (player)
         {
             this.transform.Find("Health").gameObject.GetComponent<Text>().text = "Health:" + player.GetComponent<PlayerCharacter>().Stats.Health;
